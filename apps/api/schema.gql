@@ -3,7 +3,7 @@
 # ------------------------------------------------------
 
 type User {
-  uid: String!
+  id: String!
 }
 
 type Query {
@@ -18,9 +18,9 @@ type Mutation {
 }
 
 input CreateUserInput {
-  uid: String!
+  id: String!
 }
 
 input UpdateUserInput {
-  uid: String!
+  id: Int!
 }

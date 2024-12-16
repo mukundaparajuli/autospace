@@ -14,28 +14,18 @@ datasource db {
 }
 
 model User {
-  uid       String   @id
+  id        String   @id
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  name String?
-
-  Credentials  Credentials?
+  Credentials  Credentails?
   AuthProvider AuthProvider?
   Admin        Admin?
 }
 
-model Admin {
-  uid  String @id
-  user User   @relation(fields: [uid], references: [uid])
-
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-}
-
-model Credentials {
-  uid  String @id
-  user User   @relation(fields: [uid], references: [uid])
+model Credentails {
+  id   String @id
+  User User   @relation(fields: [id], references: [id])
 
   email        String @unique
   passwordHash String
@@ -44,14 +34,22 @@ model Credentials {
   updatedAt DateTime @updatedAt
 }
 
-model AuthProvider {
-  uid String @id
+model Admin {
+  id   String @id
+  User User   @relation(fields: [id], references: [id])
 
-  type AuthProviderType
-  user User             @relation(fields: [uid], references: [uid])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AuthProvider {
+  id               String           @id
+  AuthProviderType AuthProviderType
+  User             User             @relation(fields: [id], references: [id])
 }
 
 enum AuthProviderType {
-  GOOGLE
+  GOOGLE_PROVIDER
+  GITHUB_PROVIDER
   CREDENTIALS
 }
