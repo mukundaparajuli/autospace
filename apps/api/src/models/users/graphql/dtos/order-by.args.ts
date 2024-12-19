@@ -1,7 +1,8 @@
-import { Field, InputType, PartialType } from '@nestjs/graphql'
-import { Prisma } from '@prisma/client'
-import { RestrictProperties } from 'src/common/dtos/common.input'
+import { Field, InputType, ObjectType, PartialType } from '@nestjs/graphql';
+import { Prisma } from '@prisma/client';
+import { RestrictProperties } from 'src/common/dtos/common.input';
 
+@ObjectType()
 @InputType()
 export class UserOrderByWithRelationInputStrict
   implements
@@ -12,21 +13,27 @@ export class UserOrderByWithRelationInputStrict
       'Credentials' | 'AuthProvider' | 'Admin' | 'image'
     >
   > {
+  @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
+  @Field(() => Prisma.SortOrder)
+  name: Prisma.SortOrder;
+  @Field(() => Prisma.SortOrder)
   createdAt: Prisma.SortOrder;
+  @Field(() => Prisma.SortOrder)
   updatedAt: Prisma.SortOrder;
   // Todo: Add below field decorator to the SortOrder properties.
-  // @Field(() => Prisma.SortOrder)
 }
-
 
 @InputType()
 export class UserOrderByWithRelationInput extends PartialType(
   UserOrderByWithRelationInputStrict,
-) { }
+) {
+  @Field(() => String, { nullable: true })
+  id?: Prisma.SortOrder;
+}
 
 @InputType()
 export class UserOrderByRelationAggregateInput {
   @Field(() => Prisma.SortOrder)
-  _count?: Prisma.SortOrder
+  _count?: Prisma.SortOrder;
 }

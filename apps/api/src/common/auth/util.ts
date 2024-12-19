@@ -1,23 +1,23 @@
-import { GetUserType, Role } from 'src/common/types'
-import { ForbiddenException } from '@nestjs/common'
+import { GetUserType, Role } from 'src/common/types';
+import { ForbiddenException } from '@nestjs/common';
 
 export const checkRowLevelPermission = (
   user: GetUserType,
   requestedUid?: string | string[],
   roles: Role[] = ['admin'],
 ) => {
-  if (!requestedUid) return false
+  if (!requestedUid) return false;
 
   if (user.roles?.some((role) => roles.includes(role))) {
-    return true
+    return true;
   }
 
   const ids =
     typeof requestedUid === 'string'
       ? [requestedUid]
-      : requestedUid.filter(Boolean)
+      : requestedUid.filter(Boolean);
 
   if (!ids.includes(user.id)) {
-    throw new ForbiddenException()
+    throw new ForbiddenException();
   }
-}
+};

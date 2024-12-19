@@ -1,10 +1,10 @@
-import { Field, InputType, PartialType } from '@nestjs/graphql'
-import { Prisma } from '@prisma/client'
-import { RestrictProperties } from 'src/common/dtos/common.input'
+import { Field, ID, InputType, PartialType } from '@nestjs/graphql';
+import { Prisma } from '@prisma/client';
+import { RestrictProperties } from 'src/common/dtos/common.input';
 
 @InputType()
 export class UserWhereUniqueInput {
-  id: string
+  id: string;
 }
 
 @InputType()
@@ -17,32 +17,28 @@ export class UserWhereInputStrict
       'Credentials' | 'AuthProvider' | 'Admin' | 'image'
     >
   > {
-
   id: string;
+  name: string;
   createdAt: Date;
   updatedAt: Date;
 
-  AND: UserWhereInput[]
-  OR: UserWhereInput[]
-  NOT: UserWhereInput[]
+  AND: UserWhereInput[];
+  OR: UserWhereInput[];
+  NOT: UserWhereInput[];
 }
 
 @InputType()
-export class UserWhereInput extends PartialType(
-  UserWhereInputStrict,
-) {
-
-}
+export class UserWhereInput extends PartialType(UserWhereInputStrict) { }
 
 @InputType()
 export class UserListRelationFilter {
-  every?: UserWhereInput
-  some?: UserWhereInput
-  none?: UserWhereInput
+  every?: UserWhereInput;
+  some?: UserWhereInput;
+  none?: UserWhereInput;
 }
 
 @InputType()
 export class UserRelationFilter {
-  is?: UserWhereInput
-  isNot?: UserWhereInput
+  is?: UserWhereInput;
+  isNot?: UserWhereInput;
 }
