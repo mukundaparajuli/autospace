@@ -19,7 +19,7 @@ export class UsersResolver {
   constructor(
     private readonly usersService: UsersService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => User)
@@ -42,9 +42,7 @@ export class UsersResolver {
   }
 
   @Mutation(() => LoginOutput)
-  loginUser(
-    @Args('loginInput') args: LoginInput,
-  ) {
+  loginUser(@Args('loginInput') args: LoginInput) {
     return this.usersService.login(args);
   }
 

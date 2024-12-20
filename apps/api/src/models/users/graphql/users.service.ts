@@ -1,4 +1,8 @@
-import { BadRequestException, Injectable, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { FindManyUserArgs, FindUniqueUserArgs } from './dtos/find.args';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import {
@@ -6,7 +10,7 @@ import {
   RegisterWithProvidersInput,
 } from './dtos/create-user.input';
 import { UpdateUserInput } from './dtos/update-user.input';
-import bcrypt, { compare, genSaltSync, hashSync } from 'bcryptjs';
+import { compare, genSaltSync, hashSync } from 'bcryptjs';
 import { v4 as uuid } from 'uuid';
 import { JwtService } from '@nestjs/jwt';
 
@@ -14,8 +18,8 @@ import { JwtService } from '@nestjs/jwt';
 export class UsersService {
   constructor(
     private readonly prisma: PrismaService,
-    private readonly jwtService: JwtService
-  ) { }
+    private readonly jwtService: JwtService,
+  ) {}
 
   async registerUserWithCredentialsInput({
     name,
@@ -32,7 +36,7 @@ export class UsersService {
       throw new BadRequestException('User already exists');
     }
 
-    const salt = genSaltSync(20)
+    const salt = genSaltSync(20);
     const hashedPassword = hashSync(password, salt);
 
     const id = uuid();
@@ -80,24 +84,18 @@ export class UsersService {
     });
   }
 
-  async login({
-    email,
-    password
-  }) {
-
-    // get the user 
+  async login({ email, password }) {
+    // get the user
     const user = await this.prisma.user.findFirst({
-
       where: {
         Credentials: {
-          email
-        }
+          email,
+        },
       },
       include: {
-        Credentials: true
-      }
-    })
-
+        Credentials: true,
+      },
+    });
 
     // check if that email exists
     if (!user) {
@@ -114,15 +112,14 @@ export class UsersService {
     // generate jwt token now
     const jwtToken = this.jwtService.sign(
       {
-        'id': user.id
+        id: user.id,
       },
       {
-        algorithm: 'HS256'
-      }
-    )
+        algorithm: 'HS256',
+      },
+    );
 
     return { token: jwtToken };
-
   }
 
   findAll(args: FindManyUserArgs) {
