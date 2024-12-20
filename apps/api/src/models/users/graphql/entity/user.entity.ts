@@ -1,4 +1,4 @@
-import { Field, ID, InputType, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 import { User as UserType } from '@prisma/client';
 import { RestrictProperties } from 'src/common/dtos/common.input';
 

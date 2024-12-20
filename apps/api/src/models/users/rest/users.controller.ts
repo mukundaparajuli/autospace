@@ -64,6 +64,7 @@ export class UsersController {
     @GetUser() user: GetUserType,
   ) {
     const userInfo = await this.prisma.user.findUnique({ where: { id } });
+    console.log(userInfo);
     checkRowLevelPermission(user, user.id);
     return this.prisma.user.update({
       where: { id },
@@ -76,6 +77,7 @@ export class UsersController {
   @Delete(':id')
   async remove(@Param('id') id: string, @GetUser() user: GetUserType) {
     const userInfo = await this.prisma.user.findUnique({ where: { id } });
+    console.log(userInfo);
     checkRowLevelPermission(user, user.id);
     return this.prisma.user.delete({ where: { id } });
   }

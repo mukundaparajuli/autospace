@@ -20,11 +20,8 @@ export class AuthGuard implements CanActivate {
   async canActivate(context: ExecutionContext): Promise<boolean> {
     const ctx = GqlExecutionContext.create(context);
     const req = ctx.getContext().req;
-    console.log("context", context)
-    console.log("ctx", ctx)
 
     await this.authenticateUser(req);
-
     return this.authorizeUser(req, context);
   }
 
@@ -75,13 +72,12 @@ export class AuthGuard implements CanActivate {
 
     const rolePromises = [
       this.prisma.admin.findUnique({ where: { id } }),
-      // Add promises for other role models here
     ];
     const [admin] = await Promise.all(rolePromises);
 
-
-    admin && roles.push('admin');
-
+    if (admin) {
+      roles.push('admin');
+    }
     return roles;
   }
 }
