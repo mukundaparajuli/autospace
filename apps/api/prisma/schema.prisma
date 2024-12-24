@@ -44,13 +44,10 @@ model Admin {
   id   String @id
   User User   @relation(fields: [id], references: [id])
 
-  displayName String
-  image       String?
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Verification Verification[]
+  Verifications Verification[]
 }
 
 model AuthProvider {
@@ -72,7 +69,6 @@ model Manager {
   updatedAt DateTime @updatedAt
 
   displayName String
-  image       String?
 
   companyId       String
   Company         Company           @relation(fields: [companyId], references: [id])
@@ -86,7 +82,6 @@ model Valet {
   updatedAt DateTime @updatedAt
 
   displayName String
-  image       String?
 
   companyId         String
   Company           Company           @relation(fields: [companyId], references: [id])
@@ -104,7 +99,6 @@ model Customer {
   updatedAt DateTime @updatedAt
 
   displayName String
-  image       String?
 
   Bookings Booking[]
   Reviews  Review[]
@@ -121,7 +115,6 @@ model Company {
   Managers Manager[]
   Valets   Valet[]
   Garages  Garage[]
-  Address  Address[]
   Slot     Slot[]
 }
 
@@ -134,9 +127,7 @@ model Address {
   lat         Float?
   long        Float?
 
-  companyId String
-  Company   Company  @relation(fields: [companyId], references: [id])
-  Garage    Garage[]
+  Garage Garage[]
 }
 
 model Garage {
@@ -209,6 +200,8 @@ model Booking {
   BookingTimeline   BookingTimeline[]
   ValetAssignment   ValetAssignment[]
   bookingTimelineId Int
+
+  @@index([startTime, endTime])
 }
 
 enum BookingStatus {
@@ -226,10 +219,10 @@ model ValetAssignment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  pickUpLat  Float
-  pickUpLong Float
-  returnLat  Float
-  returnLong Float
+  pickUpLat  Float?
+  pickUpLong Float?
+  returnLat  Float?
+  returnLong Float?
 
   pickupValetId String?
   returnValetId String?
@@ -258,13 +251,14 @@ model BookingTimeline {
 }
 
 model Verification {
+  id        String   @id
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
   verified Boolean @default(false)
 
   adminId  String
-  garageId String @id
+  garageId String
   Admin    Admin  @relation(fields: [adminId], references: [id])
   Garage   Garage @relation(fields: [garageId], references: [id])
 }
@@ -274,7 +268,6 @@ model Review {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  rating  Int     @default(0)
   comment String?
 
   customerId String

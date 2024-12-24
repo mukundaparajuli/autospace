@@ -11,6 +11,7 @@ import { AuthGuard } from './auth.guard';
 import { GqlExecutionContext } from '@nestjs/graphql';
 
 export const AllowAuthenticated = (...roles: Role[]) =>
+  // first the metadata is set then UseGuards decorator is used with AuthGuard
   applyDecorators(SetMetadata('roles', roles), UseGuards(AuthGuard));
 
 export const GetUser = createParamDecorator((data, ctx: ExecutionContext) => {
