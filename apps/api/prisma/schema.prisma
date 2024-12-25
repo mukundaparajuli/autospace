@@ -21,7 +21,7 @@ model User {
   name  String?
   image String?
 
-  Credentials  Credentails?
+  Credentials  Credentials?
   AuthProvider AuthProvider?
   Admin        Admin?
   Manager      Manager?
@@ -29,7 +29,7 @@ model User {
   Customer     Customer?
 }
 
-model Credentails {
+model Credentials {
   id   String @id
   User User   @relation(fields: [id], references: [id])
 
@@ -140,7 +140,7 @@ model Garage {
   image       String[]
 
   companyId    String
-  Comapny      Company        @relation(fields: [companyId], references: [id])
+  Company      Company        @relation(fields: [companyId], references: [id])
   Address      Address        @relation(fields: [addressId], references: [id])
   Slots        Slot[]
   addressId    String

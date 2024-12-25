@@ -14,7 +14,7 @@ export class CustomersResolver {
   constructor(
     private readonly customersService: CustomersService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated()
   @Mutation(() => Customer)
@@ -28,7 +28,7 @@ export class CustomersResolver {
 
   @Query(() => [Customer], { name: 'customers' })
   findAll() {
-    return this.customersService.findAll();
+    return this.customersService.findAll()
   }
 
   @Query(() => Customer, { name: 'customer' })

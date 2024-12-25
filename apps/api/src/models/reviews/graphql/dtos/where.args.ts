@@ -6,7 +6,7 @@ import {
   RestrictProperties,
   StringFilter,
 } from 'src/common/dtos/common.input';
-import { CustomerWhereInput } from 'src/models/customers/graphql/dtos/where.args';
+import { CustomerRelationFilter, CustomerWhereInput } from 'src/models/customers/graphql/dtos/where.args';
 import { GarageWhereInput } from 'src/models/garages/graphql/dtos/where.args';
 
 @InputType()
@@ -17,8 +17,7 @@ export class ReviewWhereUniqueInput {
 @InputType()
 export class ReviewWhereInputStrict
   implements
-    RestrictProperties<ReviewWhereInputStrict, Prisma.ReviewWhereInput>
-{
+  RestrictProperties<ReviewWhereInputStrict, Prisma.ReviewWhereInput> {
   id: IntFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
@@ -26,7 +25,7 @@ export class ReviewWhereInputStrict
   comment: StringFilter;
   customerId: StringFilter;
   garageId: StringFilter;
-  Customer: CustomerWhereInput;
+  Customer: CustomerRelationFilter;
   Garage: GarageWhereInput;
   // Todo: Add the below field decorator only to the $Enums types.
   // @Field(() => $Enums.x)
@@ -37,7 +36,7 @@ export class ReviewWhereInputStrict
 }
 
 @InputType()
-export class ReviewWhereInput extends PartialType(ReviewWhereInputStrict) {}
+export class ReviewWhereInput extends PartialType(ReviewWhereInputStrict) { }
 
 @InputType()
 export class ReviewListRelationFilter {

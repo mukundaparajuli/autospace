@@ -14,9 +14,9 @@ export class CompaniesResolver {
   constructor(
     private readonly companiesService: CompaniesService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
-  @AllowAuthenticated()
+  @AllowAuthenticated('manager')
   @Mutation(() => Company)
   createCompany(
     @Args('createCompanyInput') args: CreateCompanyInput,
@@ -36,7 +36,7 @@ export class CompaniesResolver {
     return this.companiesService.findOne(args);
   }
 
-  @AllowAuthenticated()
+  @AllowAuthenticated('manager')
   @Mutation(() => Company)
   async updateCompany(
     @Args('updateCompanyInput') args: UpdateCompanyInput,
@@ -49,7 +49,7 @@ export class CompaniesResolver {
     return this.companiesService.update(args);
   }
 
-  @AllowAuthenticated()
+  @AllowAuthenticated('manager')
   @Mutation(() => Company)
   async removeCompany(
     @Args() args: FindUniqueCompanyArgs,

@@ -3,7 +3,7 @@ import {
   Injectable,
   UnauthorizedException,
 } from '@nestjs/common';
-import { FindManyUserArgs, FindUniqueUserArgs } from './dtos/find.args';
+import { FindUniqueUserArgs } from './dtos/find.args';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import {
   RegisterWithCredentialsInput,
@@ -19,7 +19,7 @@ export class UsersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
-  ) {}
+  ) { }
 
   async registerUserWithCredentialsInput({
     name,
@@ -27,7 +27,7 @@ export class UsersService {
     email,
     password,
   }: RegisterWithCredentialsInput) {
-    const checkEmail = await this.prisma.credentails.findUnique({
+    const checkEmail = await this.prisma.credentials.findUnique({
       where: {
         email,
       },
@@ -122,8 +122,8 @@ export class UsersService {
     return { token: jwtToken };
   }
 
-  findAll(args: FindManyUserArgs) {
-    return this.prisma.user.findMany(args);
+  findAll() {
+    return this.prisma.user.findMany();
   }
 
   findOne(args: FindUniqueUserArgs) {

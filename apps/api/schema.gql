@@ -19,34 +19,25 @@ type LoginOutput {
   token: String!
 }
 
+type Customer {
+  id: ID
+  displayName: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
 type Query {
-  users(distinct: [UserScalarFieldEnum!], where: UserWhereInput, orderBy: [UserOrderByWithRelationInput!], cursor: UserWhereUniqueInput, take: Int, skip: Int): [User!]!
+  users: [User!]!
   user(where: UserWhereUniqueInput!): User!
-}
-
-enum UserScalarFieldEnum {
-  id
-  createdAt
-  updatedAt
-  name
-  image
-}
-
-input UserWhereInput {
-  id: String
-  name: String
-  createdAt: DateTime
-  updatedAt: DateTime
-  AND: [UserWhereInput!]
-  OR: [UserWhereInput!]
-  NOT: [UserWhereInput!]
-}
-
-input UserOrderByWithRelationInput {
-  id: String
+  customers: [Customer!]!
+  customer(where: CustomerWhereUniqueInput!): Customer!
 }
 
 input UserWhereUniqueInput {
+  id: String!
+}
+
+input CustomerWhereUniqueInput {
   id: String!
 }
 
@@ -56,6 +47,9 @@ type Mutation {
   loginUser(loginInput: LoginInput!): LoginOutput!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(where: UserWhereUniqueInput!): User!
+  createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
+  updateCustomer(updateCustomerInput: UpdateCustomerInput!): Customer!
+  removeCustomer(where: CustomerWhereUniqueInput!): Customer!
 }
 
 input RegisterWithCredentialsInput {
@@ -86,4 +80,14 @@ input LoginInput {
 
 input UpdateUserInput {
   id: String!
+}
+
+input CreateCustomerInput {
+  id: ID
+  displayName: String!
+}
+
+input UpdateCustomerInput {
+  id: String!
+  displayName: String
 }

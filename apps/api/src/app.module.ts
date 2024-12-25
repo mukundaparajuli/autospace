@@ -6,6 +6,7 @@ import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './models/users/users.module';
 import { JwtModule } from '@nestjs/jwt';
+import { CustomersModule } from './models/customers/customers.module';
 
 const MAX_AGE = 24 * 60 * 60;
 @Module({
@@ -29,10 +30,14 @@ const MAX_AGE = 24 * 60 * 60;
       buildSchemaOptions: {
         numberScalarMode: 'integer', //by default they are in float form
       },
+      debug: true,
+      playground: true
     }),
     UsersModule,
+    CustomersModule
+
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

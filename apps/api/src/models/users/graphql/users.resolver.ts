@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entity/user.entity';
-import { FindManyUserArgs, FindUniqueUserArgs } from './dtos/find.args';
+import { FindUniqueUserArgs } from './dtos/find.args';
 import {
   LoginInput,
   LoginOutput,
@@ -19,9 +19,8 @@ export class UsersResolver {
   constructor(
     private readonly usersService: UsersService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
-  @AllowAuthenticated()
   @Mutation(() => User)
   createUserWithCredentailsInput(
     @Args('createUserWithCredentailsInput') args: RegisterWithCredentialsInput,
@@ -31,7 +30,6 @@ export class UsersResolver {
     return this.usersService.registerUserWithCredentialsInput(args);
   }
 
-  @AllowAuthenticated()
   @Mutation(() => User)
   createUserWithProvidersInput(
     @Args('createUserWithProvidersInput') args: RegisterWithProvidersInput,
@@ -47,8 +45,8 @@ export class UsersResolver {
   }
 
   @Query(() => [User], { name: 'users' })
-  findAll(@Args() args: FindManyUserArgs) {
-    return this.usersService.findAll(args);
+  findAll() {
+    return this.usersService.findAll();
   }
 
   @Query(() => User, { name: 'user' })

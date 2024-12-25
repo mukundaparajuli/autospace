@@ -5,9 +5,9 @@ import {
   RestrictProperties,
   StringFilter,
 } from 'src/common/dtos/common.input';
-import { BookingListRelationFilter } from 'src/models/bookings/graphql/dtos/where.args';
-import { ReviewListRelationFilter } from 'src/models/reviews/graphql/dtos/where.args';
-import { UserWhereInput } from 'src/models/users/graphql/dtos/where.args';
+import { BookingListRelationFilter, BookingRelationFilter } from 'src/models/bookings/graphql/dtos/where.args';
+import { ReviewListRelationFilter, ReviewRelationFilter } from 'src/models/reviews/graphql/dtos/where.args';
+import { UserRelationFilter, UserWhereInput } from 'src/models/users/graphql/dtos/where.args';
 
 @InputType()
 export class CustomerWhereUniqueInput {
@@ -17,17 +17,17 @@ export class CustomerWhereUniqueInput {
 @InputType()
 export class CustomerWhereInputStrict
   implements
-    RestrictProperties<CustomerWhereInputStrict, Prisma.CustomerWhereInput>
-{
-  id: StringFilter;
-  createdAt: DateTimeFilter;
-  updatedAt: DateTimeFilter;
-  displayName: StringFilter;
-  User: UserWhereInput;
-  Bookings: BookingListRelationFilter;
-  Reviews: ReviewListRelationFilter;
-  // Todo: Add the below field decorator only to the $Enums types.
-  // @Field(() => $Enums.x)
+  RestrictProperties<CustomerWhereInputStrict, Prisma.CustomerWhereInput> {
+
+  User: UserRelationFilter
+  id: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  displayName: StringFilter
+  Bookings: BookingListRelationFilter
+  Reviews: ReviewListRelationFilter
+
+
 
   AND: CustomerWhereInput[];
   OR: CustomerWhereInput[];
@@ -35,7 +35,7 @@ export class CustomerWhereInputStrict
 }
 
 @InputType()
-export class CustomerWhereInput extends PartialType(CustomerWhereInputStrict) {}
+export class CustomerWhereInput extends PartialType(CustomerWhereInputStrict) { }
 
 @InputType()
 export class CustomerListRelationFilter {

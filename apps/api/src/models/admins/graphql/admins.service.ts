@@ -6,15 +6,15 @@ import { UpdateAdminInput } from './dtos/update-admin.input';
 
 @Injectable()
 export class AdminsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
   create(createAdminInput: CreateAdminInput) {
     return this.prisma.admin.create({
       data: createAdminInput,
     });
   }
 
-  findAll(args: FindManyAdminArgs) {
-    return this.prisma.admin.findMany(args);
+  findAll() {
+    return this.prisma.admin.findMany();
   }
 
   findOne(args: FindUniqueAdminArgs) {
