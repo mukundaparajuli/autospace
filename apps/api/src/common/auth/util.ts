@@ -3,12 +3,12 @@ import { ForbiddenException } from '@nestjs/common';
 
 /**
  * Enforces row-level permissions by checking user roles or matching user IDs.
- * 
+ *
  * @param user - The authenticated user making the request.
  * @param requestedUid - The ID(s) of the resource the user is trying to access.
  *                        Can be a string or an array of strings.
  * @param roles - Roles that have unrestricted access (default: ['admin']).
- * 
+ *
  * @returns {boolean} - Returns `true` if access is granted; otherwise, throws an exception.
  * @throws {ForbiddenException} - If the user does not have permission to access the resource.
  */

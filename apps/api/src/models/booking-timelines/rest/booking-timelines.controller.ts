@@ -27,7 +27,7 @@ import { checkRowLevelPermission } from 'src/common/auth/util';
 @ApiTags('booking-timelines')
 @Controller('booking-timelines')
 export class BookingTimelinesController {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   @AllowAuthenticated()
   @ApiBearerAuth()

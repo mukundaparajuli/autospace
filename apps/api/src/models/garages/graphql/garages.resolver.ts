@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { GaragesService } from './garages.service';
 import { Garage } from './entity/garage.entity';
-import { FindManyGarageArgs, FindUniqueGarageArgs } from './dtos/find.args';
+import { FindUniqueGarageArgs } from './dtos/find.args';
 import { CreateGarageInput } from './dtos/create-garage.input';
 import { UpdateGarageInput } from './dtos/update-garage.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -14,7 +14,7 @@ export class GaragesResolver {
   constructor(
     private readonly garagesService: GaragesService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Garage)
@@ -27,8 +27,8 @@ export class GaragesResolver {
   }
 
   @Query(() => [Garage], { name: 'garages' })
-  findAll(@Args() args: FindManyGarageArgs) {
-    return this.garagesService.findAll(args);
+  findAll() {
+    return this.garagesService.findAll();
   }
 
   @Query(() => Garage, { name: 'garage' })

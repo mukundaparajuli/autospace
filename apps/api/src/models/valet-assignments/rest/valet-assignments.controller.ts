@@ -27,7 +27,7 @@ import { ValetAssignmentEntity } from './entity/valet-assignment.entity';
 @ApiTags('valet-assignments')
 @Controller('valet-assignments')
 export class ValetAssignmentsController {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   @AllowAuthenticated()
   @ApiBearerAuth()

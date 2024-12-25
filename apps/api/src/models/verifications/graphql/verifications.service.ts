@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  FindManyVerificationArgs,
-  FindUniqueVerificationArgs,
-} from './dtos/find.args';
+import { FindUniqueVerificationArgs } from './dtos/find.args';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { CreateVerificationInput } from './dtos/create-verification.input';
 import { UpdateVerificationInput } from './dtos/update-verification.input';
@@ -16,8 +13,8 @@ export class VerificationsService {
     });
   }
 
-  findAll(args: FindManyVerificationArgs) {
-    return this.prisma.verification.findMany(args);
+  findAll() {
+    return this.prisma.verification.findMany();
   }
 
   findOne(args: FindUniqueVerificationArgs) {

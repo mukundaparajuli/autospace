@@ -269,6 +269,7 @@ model Review {
   updatedAt DateTime @updatedAt
 
   comment String?
+  rating  Int
 
   customerId String
   Customer   Customer @relation(fields: [customerId], references: [id])

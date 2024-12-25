@@ -14,7 +14,7 @@ export class AdminsResolver {
   constructor(
     private readonly adminsService: AdminsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Admin)

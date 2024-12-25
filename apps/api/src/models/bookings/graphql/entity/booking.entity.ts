@@ -1,4 +1,4 @@
-import { Field, ObjectType } from '@nestjs/graphql';
+import { ObjectType } from '@nestjs/graphql';
 import { $Enums, Booking as BookingType } from '@prisma/client';
 import { RestrictProperties } from 'src/common/dtos/common.input';
 

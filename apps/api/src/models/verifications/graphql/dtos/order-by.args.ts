@@ -8,9 +8,18 @@ export class VerificationOrderByWithRelationInputStrict
     RestrictProperties<
       VerificationOrderByWithRelationInputStrict,
       Prisma.VerificationOrderByWithRelationInput
-    > {
+    >
+{
+  @Field(() => Prisma.SortOrder)
+  id: Prisma.SortOrder;
+  createdAt: Prisma.SortOrder;
+  updatedAt: Prisma.SortOrder;
+  verified: Prisma.SortOrder;
+  adminId: Prisma.SortOrder;
+  garageId: Prisma.SortOrder;
+  Admin: Prisma.AdminOrderByWithRelationInput;
+  Garage: Prisma.GarageOrderByWithRelationInput;
   // Todo: Add below field decorator to the SortOrder properties.
-  // @Field(() => Prisma.SortOrder)
 }
 
 @InputType()

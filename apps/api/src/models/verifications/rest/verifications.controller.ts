@@ -37,7 +37,7 @@ export class VerificationsController {
     @Body() createVerificationDto: CreateVerification,
     @GetUser() user: GetUserType,
   ) {
-    checkRowLevelPermission(user, createVerificationDto.uid);
+    checkRowLevelPermission(user, createVerificationDto.id);
     return this.prisma.verification.create({ data: createVerificationDto });
   }
 
@@ -53,7 +53,7 @@ export class VerificationsController {
 
   @ApiOkResponse({ type: VerificationEntity })
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.prisma.verification.findUnique({ where: { id } });
   }
 
@@ -62,14 +62,14 @@ export class VerificationsController {
   @AllowAuthenticated()
   @Patch(':id')
   async update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() updateVerificationDto: UpdateVerification,
     @GetUser() user: GetUserType,
   ) {
     const verification = await this.prisma.verification.findUnique({
       where: { id },
     });
-    checkRowLevelPermission(user, verification.uid);
+    checkRowLevelPermission(user, verification.id);
     return this.prisma.verification.update({
       where: { id },
       data: updateVerificationDto,
@@ -79,11 +79,11 @@ export class VerificationsController {
   @ApiBearerAuth()
   @AllowAuthenticated()
   @Delete(':id')
-  async remove(@Param('id') id: number, @GetUser() user: GetUserType) {
+  async remove(@Param('id') id: string, @GetUser() user: GetUserType) {
     const verification = await this.prisma.verification.findUnique({
       where: { id },
     });
-    checkRowLevelPermission(user, verification.uid);
+    checkRowLevelPermission(user, verification.id);
     return this.prisma.verification.delete({ where: { id } });
   }
 }

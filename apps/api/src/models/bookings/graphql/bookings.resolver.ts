@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { BookingsService } from './bookings.service';
 import { Booking } from './entity/booking.entity';
-import { FindManyBookingArgs, FindUniqueBookingArgs } from './dtos/find.args';
+import { FindUniqueBookingArgs } from './dtos/find.args';
 import { CreateBookingInput } from './dtos/create-booking.input';
 import { UpdateBookingInput } from './dtos/update-booking.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -14,7 +14,7 @@ export class BookingsResolver {
   constructor(
     private readonly bookingsService: BookingsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Booking)
@@ -27,8 +27,8 @@ export class BookingsResolver {
   }
 
   @Query(() => [Booking], { name: 'bookings' })
-  findAll(@Args() args: FindManyBookingArgs) {
-    return this.bookingsService.findAll(args);
+  findAll() {
+    return this.bookingsService.findAll();
   }
 
   @Query(() => Booking, { name: 'booking' })

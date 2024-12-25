@@ -1,6 +1,11 @@
-import { Field, InputType, PartialType } from '@nestjs/graphql';
+import { InputType, PartialType } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
-import { DateTimeFilter, FloatFilter, RestrictProperties, StringFilter } from 'src/common/dtos/common.input';
+import {
+  DateTimeFilter,
+  FloatFilter,
+  RestrictProperties,
+  StringFilter,
+} from 'src/common/dtos/common.input';
 import { BookingRelationFilter } from 'src/models/bookings/graphql/dtos/where.args';
 import { ValetRelationFilter } from 'src/models/valets/graphql/dtos/where.args';
 
@@ -12,10 +17,11 @@ export class ValetAssignmentWhereUniqueInput {
 @InputType()
 export class ValetAssignmentWhereInputStrict
   implements
-  RestrictProperties<
-    ValetAssignmentWhereInputStrict,
-    Prisma.ValetAssignmentWhereInput
-  > {
+    RestrictProperties<
+      ValetAssignmentWhereInputStrict,
+      Prisma.ValetAssignmentWhereInput
+    >
+{
   id: StringFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
@@ -40,7 +46,7 @@ export class ValetAssignmentWhereInputStrict
 @InputType()
 export class ValetAssignmentWhereInput extends PartialType(
   ValetAssignmentWhereInputStrict,
-) { }
+) {}
 
 @InputType()
 export class ValetAssignmentListRelationFilter {

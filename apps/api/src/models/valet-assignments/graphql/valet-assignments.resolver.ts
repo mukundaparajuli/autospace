@@ -1,10 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ValetAssignmentsService } from './valet-assignments.service';
 import { ValetAssignment } from './entity/valet-assignment.entity';
-import {
-  FindManyValetAssignmentArgs,
-  FindUniqueValetAssignmentArgs,
-} from './dtos/find.args';
+import { FindUniqueValetAssignmentArgs } from './dtos/find.args';
 import { CreateValetAssignmentInput } from './dtos/create-valet-assignment.input';
 import { UpdateValetAssignmentInput } from './dtos/update-valet-assignment.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -17,7 +14,7 @@ export class ValetAssignmentsResolver {
   constructor(
     private readonly valetAssignmentsService: ValetAssignmentsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => ValetAssignment)
@@ -30,8 +27,8 @@ export class ValetAssignmentsResolver {
   }
 
   @Query(() => [ValetAssignment], { name: 'valetAssignments' })
-  findAll(@Args() args: FindManyValetAssignmentArgs) {
-    return this.valetAssignmentsService.findAll(args);
+  findAll() {
+    return this.valetAssignmentsService.findAll();
   }
 
   @Query(() => ValetAssignment, { name: 'valetAssignment' })

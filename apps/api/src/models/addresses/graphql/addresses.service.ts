@@ -1,19 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import { FindManyAddressArgs, FindUniqueAddressArgs } from './dtos/find.args';
+import { FindUniqueAddressArgs } from './dtos/find.args';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { CreateAddressInput } from './dtos/create-address.input';
 import { UpdateAddressInput } from './dtos/update-address.input';
 
 @Injectable()
 export class AddressesService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
   create(createAddressInput: CreateAddressInput) {
     return this.prisma.address.create({
       data: createAddressInput,
     });
   }
 
-  findAll(args: FindManyAddressArgs) {
+  findAll() {
     return this.prisma.address.findMany();
   }
 

@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { AddressesService } from './addresses.service';
 import { Address } from './entity/address.entity';
-import { FindManyAddressArgs, FindUniqueAddressArgs } from './dtos/find.args';
+import { FindUniqueAddressArgs } from './dtos/find.args';
 import { CreateAddressInput } from './dtos/create-address.input';
 import { UpdateAddressInput } from './dtos/update-address.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -14,7 +14,7 @@ export class AddressesResolver {
   constructor(
     private readonly addressesService: AddressesService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Address)
@@ -27,8 +27,8 @@ export class AddressesResolver {
   }
 
   @Query(() => [Address], { name: 'addresses' })
-  findAll(@Args() args: FindManyAddressArgs) {
-    return this.addressesService.findAll(args);
+  findAll() {
+    return this.addressesService.findAll();
   }
 
   @Query(() => Address, { name: 'address' })

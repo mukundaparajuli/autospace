@@ -4,7 +4,9 @@ import { RestrictProperties } from 'src/common/dtos/common.input';
 
 @ObjectType()
 export class Verification
-  implements RestrictProperties<Verification, VerificationType> {
+  implements RestrictProperties<Verification, VerificationType>
+{
+  id: string;
   createdAt: Date;
   updatedAt: Date;
   verified: boolean;

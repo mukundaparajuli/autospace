@@ -1,10 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { BookingTimelinesService } from './booking-timelines.service';
 import { BookingTimeline } from './entity/booking-timeline.entity';
-import {
-  FindManyBookingTimelineArgs,
-  FindUniqueBookingTimelineArgs,
-} from './dtos/find.args';
+import { FindUniqueBookingTimelineArgs } from './dtos/find.args';
 import { CreateBookingTimelineInput } from './dtos/create-booking-timeline.input';
 import { UpdateBookingTimelineInput } from './dtos/update-booking-timeline.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -17,7 +14,7 @@ export class BookingTimelinesResolver {
   constructor(
     private readonly bookingTimelinesService: BookingTimelinesService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => BookingTimeline)
@@ -30,8 +27,8 @@ export class BookingTimelinesResolver {
   }
 
   @Query(() => [BookingTimeline], { name: 'bookingTimelines' })
-  findAll(@Args() args: FindManyBookingTimelineArgs) {
-    return this.bookingTimelinesService.findAll(args);
+  findAll() {
+    return this.bookingTimelinesService.findAll();
   }
 
   @Query(() => BookingTimeline, { name: 'bookingTimeline' })

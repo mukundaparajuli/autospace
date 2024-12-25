@@ -6,4 +6,4 @@ export class CreateValetAssignmentInput extends PickType(
   ValetAssignment,
   ['id', 'bookingId'],
   InputType,
-) { }
+) {}

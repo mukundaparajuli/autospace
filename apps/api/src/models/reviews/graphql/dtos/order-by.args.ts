@@ -5,10 +5,11 @@ import { RestrictProperties } from 'src/common/dtos/common.input';
 @InputType()
 export class ReviewOrderByWithRelationInputStrict
   implements
-  RestrictProperties<
-    ReviewOrderByWithRelationInputStrict,
-    Prisma.ReviewOrderByWithRelationInput
-  > {
+    RestrictProperties<
+      ReviewOrderByWithRelationInputStrict,
+      Prisma.ReviewOrderByWithRelationInput
+    >
+{
   @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
   createdAt: Prisma.SortOrder;
@@ -25,7 +26,7 @@ export class ReviewOrderByWithRelationInputStrict
 @InputType()
 export class ReviewOrderByWithRelationInput extends PartialType(
   ReviewOrderByWithRelationInputStrict,
-) { }
+) {}
 
 @InputType()
 export class ReviewOrderByRelationAggregateInput {

@@ -37,7 +37,7 @@ export class ManagersController {
     @Body() createManagerDto: CreateManager,
     @GetUser() user: GetUserType,
   ) {
-    checkRowLevelPermission(user, createManagerDto.uid);
+    checkRowLevelPermission(user, createManagerDto.id);
     return this.prisma.manager.create({ data: createManagerDto });
   }
 
@@ -53,7 +53,7 @@ export class ManagersController {
 
   @ApiOkResponse({ type: ManagerEntity })
   @Get(':id')
-  findOne(@Param('id') id: number) {
+  findOne(@Param('id') id: string) {
     return this.prisma.manager.findUnique({ where: { id } });
   }
 
@@ -62,12 +62,12 @@ export class ManagersController {
   @AllowAuthenticated()
   @Patch(':id')
   async update(
-    @Param('id') id: number,
+    @Param('id') id: string,
     @Body() updateManagerDto: UpdateManager,
     @GetUser() user: GetUserType,
   ) {
     const manager = await this.prisma.manager.findUnique({ where: { id } });
-    checkRowLevelPermission(user, manager.uid);
+    checkRowLevelPermission(user, manager.id);
     return this.prisma.manager.update({
       where: { id },
       data: updateManagerDto,
@@ -77,9 +77,9 @@ export class ManagersController {
   @ApiBearerAuth()
   @AllowAuthenticated()
   @Delete(':id')
-  async remove(@Param('id') id: number, @GetUser() user: GetUserType) {
+  async remove(@Param('id') id: string, @GetUser() user: GetUserType) {
     const manager = await this.prisma.manager.findUnique({ where: { id } });
-    checkRowLevelPermission(user, manager.uid);
+    checkRowLevelPermission(user, manager.id);
     return this.prisma.manager.delete({ where: { id } });
   }
 }

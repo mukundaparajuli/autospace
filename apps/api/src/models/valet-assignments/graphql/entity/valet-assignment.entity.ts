@@ -4,7 +4,8 @@ import { RestrictProperties } from 'src/common/dtos/common.input';
 
 @ObjectType()
 export class ValetAssignment
-  implements RestrictProperties<ValetAssignment, ValetAssignmentType> {
+  implements RestrictProperties<ValetAssignment, ValetAssignmentType>
+{
   id: string;
   createdAt: Date;
   updatedAt: Date;

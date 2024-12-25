@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ManagersService } from './managers.service';
 import { Manager } from './entity/manager.entity';
-import { FindManyManagerArgs, FindUniqueManagerArgs } from './dtos/find.args';
+import { FindUniqueManagerArgs } from './dtos/find.args';
 import { CreateManagerInput } from './dtos/create-manager.input';
 import { UpdateManagerInput } from './dtos/update-manager.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -14,7 +14,7 @@ export class ManagersResolver {
   constructor(
     private readonly managersService: ManagersService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Manager)
@@ -27,8 +27,8 @@ export class ManagersResolver {
   }
 
   @Query(() => [Manager], { name: 'managers' })
-  findAll(@Args() args: FindManyManagerArgs) {
-    return this.managersService.findAll(args);
+  findAll() {
+    return this.managersService.findAll();
   }
 
   @Query(() => Manager, { name: 'manager' })

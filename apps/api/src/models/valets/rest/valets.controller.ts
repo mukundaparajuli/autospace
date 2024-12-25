@@ -27,7 +27,7 @@ import { checkRowLevelPermission } from 'src/common/auth/util';
 @ApiTags('valets')
 @Controller('valets')
 export class ValetsController {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   @AllowAuthenticated()
   @ApiBearerAuth()

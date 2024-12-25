@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { FindManyCustomerArgs, FindUniqueCustomerArgs } from './dtos/find.args';
+import { FindUniqueCustomerArgs } from './dtos/find.args';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { CreateCustomerInput } from './dtos/create-customer.input';
 import { UpdateCustomerInput } from './dtos/update-customer.input';
@@ -13,8 +13,8 @@ export class CustomersService {
     });
   }
 
-  findAll(args: FindManyCustomerArgs) {
-    return this.prisma.customer.findMany(args);
+  findAll() {
+    return this.prisma.customer.findMany();
   }
 
   findOne(args: FindUniqueCustomerArgs) {

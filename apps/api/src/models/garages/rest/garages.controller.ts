@@ -27,7 +27,7 @@ import { checkRowLevelPermission } from 'src/common/auth/util';
 @ApiTags('garages')
 @Controller('garages')
 export class GaragesController {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
 
   @AllowAuthenticated()
   @ApiBearerAuth()

@@ -5,10 +5,11 @@ import { RestrictProperties } from 'src/common/dtos/common.input';
 @InputType()
 export class ValetAssignmentOrderByWithRelationInputStrict
   implements
-  RestrictProperties<
-    ValetAssignmentOrderByWithRelationInputStrict,
-    Prisma.ValetAssignmentOrderByWithRelationInput
-  > {
+    RestrictProperties<
+      ValetAssignmentOrderByWithRelationInputStrict,
+      Prisma.ValetAssignmentOrderByWithRelationInput
+    >
+{
   @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
   createdAt: Prisma.SortOrder;
@@ -29,7 +30,7 @@ export class ValetAssignmentOrderByWithRelationInputStrict
 @InputType()
 export class ValetAssignmentOrderByWithRelationInput extends PartialType(
   ValetAssignmentOrderByWithRelationInputStrict,
-) { }
+) {}
 
 @InputType()
 export class ValetAssignmentOrderByRelationAggregateInput {

@@ -8,9 +8,19 @@ export class CompanyOrderByWithRelationInputStrict
     RestrictProperties<
       CompanyOrderByWithRelationInputStrict,
       Prisma.CompanyOrderByWithRelationInput
-    > {
+    >
+{
+  @Field(() => Prisma.SortOrder)
+  id: Prisma.SortOrder;
+  createdAt: Prisma.SortOrder;
+  updatedAt: Prisma.SortOrder;
+  displayName: Prisma.SortOrder;
+  description: Prisma.SortOrder;
+  Managers: Prisma.ManagerOrderByRelationAggregateInput;
+  Valets: Prisma.ValetOrderByRelationAggregateInput;
+  Garages: Prisma.GarageOrderByRelationAggregateInput;
+  Slot: Prisma.SlotOrderByRelationAggregateInput;
   // Todo: Add below field decorator to the SortOrder properties.
-  // @Field(() => Prisma.SortOrder)
 }
 
 @InputType()

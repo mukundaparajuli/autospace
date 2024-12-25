@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { ReviewsService } from './reviews.service';
 import { Review } from './entity/review.entity';
-import { FindManyReviewArgs, FindUniqueReviewArgs } from './dtos/find.args';
+import { FindUniqueReviewArgs } from './dtos/find.args';
 import { CreateReviewInput } from './dtos/create-review.input';
 import { UpdateReviewInput } from './dtos/update-review.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -14,7 +14,7 @@ export class ReviewsResolver {
   constructor(
     private readonly reviewsService: ReviewsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Review)
@@ -27,8 +27,8 @@ export class ReviewsResolver {
   }
 
   @Query(() => [Review], { name: 'reviews' })
-  findAll(@Args() args: FindManyReviewArgs) {
-    return this.reviewsService.findAll(args);
+  findAll() {
+    return this.reviewsService.findAll();
   }
 
   @Query(() => Review, { name: 'review' })

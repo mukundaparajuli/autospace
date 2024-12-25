@@ -1,10 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { VerificationsService } from './verifications.service';
 import { Verification } from './entity/verification.entity';
-import {
-  FindManyVerificationArgs,
-  FindUniqueVerificationArgs,
-} from './dtos/find.args';
+import { FindUniqueVerificationArgs } from './dtos/find.args';
 import { CreateVerificationInput } from './dtos/create-verification.input';
 import { UpdateVerificationInput } from './dtos/update-verification.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -17,7 +14,7 @@ export class VerificationsResolver {
   constructor(
     private readonly verificationsService: VerificationsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Verification)
@@ -30,8 +27,8 @@ export class VerificationsResolver {
   }
 
   @Query(() => [Verification], { name: 'verifications' })
-  findAll(@Args() args: FindManyVerificationArgs) {
-    return this.verificationsService.findAll(args);
+  findAll() {
+    return this.verificationsService.findAll();
   }
 
   @Query(() => Verification, { name: 'verification' })

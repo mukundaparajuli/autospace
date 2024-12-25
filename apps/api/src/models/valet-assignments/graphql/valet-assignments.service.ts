@@ -1,22 +1,19 @@
 import { Injectable } from '@nestjs/common';
-import {
-  FindManyValetAssignmentArgs,
-  FindUniqueValetAssignmentArgs,
-} from './dtos/find.args';
+import { FindUniqueValetAssignmentArgs } from './dtos/find.args';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { CreateValetAssignmentInput } from './dtos/create-valet-assignment.input';
 import { UpdateValetAssignmentInput } from './dtos/update-valet-assignment.input';
 
 @Injectable()
 export class ValetAssignmentsService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
   create(createValetAssignmentInput: CreateValetAssignmentInput) {
     return this.prisma.valetAssignment.create({
       data: createValetAssignmentInput,
     });
   }
 
-  findAll(args: FindManyValetAssignmentArgs) {
+  findAll() {
     return this.prisma.valetAssignment.findMany();
   }
 

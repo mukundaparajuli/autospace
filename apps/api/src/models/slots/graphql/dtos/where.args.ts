@@ -1,6 +1,11 @@
 import { Field, InputType, PartialType } from '@nestjs/graphql';
 import { $Enums, Prisma } from '@prisma/client';
-import { DateTimeFilter, FloatFilter, RestrictProperties, StringFilter } from 'src/common/dtos/common.input';
+import {
+  DateTimeFilter,
+  FloatFilter,
+  RestrictProperties,
+  StringFilter,
+} from 'src/common/dtos/common.input';
 
 @InputType()
 export class SlotWhereUniqueInput {
@@ -9,7 +14,8 @@ export class SlotWhereUniqueInput {
 
 @InputType()
 export class SlotWhereInputStrict
-  implements RestrictProperties<SlotWhereInputStrict, Prisma.SlotWhereInput> {
+  implements RestrictProperties<SlotWhereInputStrict, Prisma.SlotWhereInput>
+{
   id: StringFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
@@ -22,8 +28,28 @@ export class SlotWhereInputStrict
   slotType: $Enums.SlotType;
   garageId: StringFilter;
   companyId: StringFilter;
-  Garage: (Prisma.Without<Prisma.GarageScalarRelationFilter, Prisma.GarageWhereInput> & Prisma.GarageWhereInput) | (Prisma.Without<Prisma.GarageWhereInput, Prisma.GarageScalarRelationFilter> & Prisma.GarageScalarRelationFilter);
-  Company: (Prisma.Without<Prisma.CompanyScalarRelationFilter, Prisma.CompanyWhereInput> & Prisma.CompanyWhereInput) | (Prisma.Without<Prisma.CompanyWhereInput, Prisma.CompanyScalarRelationFilter> & Prisma.CompanyScalarRelationFilter);
+  Garage:
+    | (Prisma.Without<
+        Prisma.GarageScalarRelationFilter,
+        Prisma.GarageWhereInput
+      > &
+        Prisma.GarageWhereInput)
+    | (Prisma.Without<
+        Prisma.GarageWhereInput,
+        Prisma.GarageScalarRelationFilter
+      > &
+        Prisma.GarageScalarRelationFilter);
+  Company:
+    | (Prisma.Without<
+        Prisma.CompanyScalarRelationFilter,
+        Prisma.CompanyWhereInput
+      > &
+        Prisma.CompanyWhereInput)
+    | (Prisma.Without<
+        Prisma.CompanyWhereInput,
+        Prisma.CompanyScalarRelationFilter
+      > &
+        Prisma.CompanyScalarRelationFilter);
   Bookings: Prisma.BookingListRelationFilter;
   // Todo: Add the below field decorator only to the $Enums types.
 
@@ -33,7 +59,7 @@ export class SlotWhereInputStrict
 }
 
 @InputType()
-export class SlotWhereInput extends PartialType(SlotWhereInputStrict) { }
+export class SlotWhereInput extends PartialType(SlotWhereInputStrict) {}
 
 @InputType()
 export class SlotListRelationFilter {

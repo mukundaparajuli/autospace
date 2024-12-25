@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { CustomersService } from './customers.service';
 import { Customer } from './entity/customer.entity';
-import { FindManyCustomerArgs, FindUniqueCustomerArgs } from './dtos/find.args';
+import { FindUniqueCustomerArgs } from './dtos/find.args';
 import { CreateCustomerInput } from './dtos/create-customer.input';
 import { UpdateCustomerInput } from './dtos/update-customer.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -14,7 +14,7 @@ export class CustomersResolver {
   constructor(
     private readonly customersService: CustomersService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Customer)
@@ -27,8 +27,8 @@ export class CustomersResolver {
   }
 
   @Query(() => [Customer], { name: 'customers' })
-  findAll(@Args() args: FindManyCustomerArgs) {
-    return this.customersService.findAll(args);
+  findAll() {
+    return this.customersService.findAll();
   }
 
   @Query(() => Customer, { name: 'customer' })

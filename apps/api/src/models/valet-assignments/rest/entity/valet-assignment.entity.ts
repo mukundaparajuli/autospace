@@ -2,7 +2,8 @@ import { ValetAssignment } from '@prisma/client';
 import { RestrictProperties } from 'src/common/dtos/common.input';
 
 export class ValetAssignmentEntity
-  implements RestrictProperties<ValetAssignmentEntity, ValetAssignment> {
+  implements RestrictProperties<ValetAssignmentEntity, ValetAssignment>
+{
   id: string;
   bookingId: string;
   createdAt: Date;

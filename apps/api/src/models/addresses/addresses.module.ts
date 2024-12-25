@@ -8,4 +8,4 @@ import { AddressesController } from './rest/addresses.controller';
   exports: [AddressesService],
   controllers: [AddressesController],
 })
-export class AddressesModule { }
+export class AddressesModule {}

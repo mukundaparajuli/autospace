@@ -14,7 +14,7 @@ export class SlotsResolver {
   constructor(
     private readonly slotsService: SlotsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Slot)

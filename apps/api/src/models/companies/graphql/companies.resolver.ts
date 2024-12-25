@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { CompaniesService } from './companies.service';
 import { Company } from './entity/company.entity';
-import { FindManyCompanyArgs, FindUniqueCompanyArgs } from './dtos/find.args';
+import { FindUniqueCompanyArgs } from './dtos/find.args';
 import { CreateCompanyInput } from './dtos/create-company.input';
 import { UpdateCompanyInput } from './dtos/update-company.input';
 import { checkRowLevelPermission } from 'src/common/auth/util';
@@ -14,7 +14,7 @@ export class CompaniesResolver {
   constructor(
     private readonly companiesService: CompaniesService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Company)
@@ -27,8 +27,8 @@ export class CompaniesResolver {
   }
 
   @Query(() => [Company], { name: 'companies' })
-  findAll(@Args() args: FindManyCompanyArgs) {
-    return this.companiesService.findAll(args);
+  findAll() {
+    return this.companiesService.findAll();
   }
 
   @Query(() => Company, { name: 'company' })

@@ -1,8 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import {
-  FindManyBookingTimelineArgs,
-  FindUniqueBookingTimelineArgs,
-} from './dtos/find.args';
+import { FindUniqueBookingTimelineArgs } from './dtos/find.args';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { CreateBookingTimelineInput } from './dtos/create-booking-timeline.input';
 import { UpdateBookingTimelineInput } from './dtos/update-booking-timeline.input';
@@ -16,8 +13,8 @@ export class BookingTimelinesService {
     });
   }
 
-  findAll(args: FindManyBookingTimelineArgs) {
-    return this.prisma.bookingTimeline.findMany(args);
+  findAll() {
+    return this.prisma.bookingTimeline.findMany();
   }
 
   findOne(args: FindUniqueBookingTimelineArgs) {

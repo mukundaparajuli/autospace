@@ -11,6 +11,5 @@ export class Address implements RestrictProperties<Address, AddressType> {
   addressName: string;
   lat: number;
   long: number;
-  companyId: string;
   // Todo Add below to make optional fields optional.
 }

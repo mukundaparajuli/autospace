@@ -1,6 +1,12 @@
 import { Field, InputType, PartialType } from '@nestjs/graphql';
-import { $Enums, Customer, Prisma, Slot } from '@prisma/client';
-import { DateTimeFilter, FloatFilter, IntFilter, RestrictProperties, StringFilter } from 'src/common/dtos/common.input';
+import { $Enums, Prisma } from '@prisma/client';
+import {
+  DateTimeFilter,
+  FloatFilter,
+  IntFilter,
+  RestrictProperties,
+  StringFilter,
+} from 'src/common/dtos/common.input';
 import { BookingTimelineListRelationFilter } from 'src/models/booking-timelines/graphql/dtos/where.args';
 import { CustomerRelationFilter } from 'src/models/customers/graphql/dtos/where.args';
 import { SlotRelationFilter } from 'src/models/slots/graphql/dtos/where.args';
@@ -14,7 +20,8 @@ export class BookingWhereUniqueInput {
 @InputType()
 export class BookingWhereInputStrict
   implements
-  RestrictProperties<BookingWhereInputStrict, Prisma.BookingWhereInput> {
+    RestrictProperties<BookingWhereInputStrict, Prisma.BookingWhereInput>
+{
   id: StringFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
@@ -42,7 +49,7 @@ export class BookingWhereInputStrict
 }
 
 @InputType()
-export class BookingWhereInput extends PartialType(BookingWhereInputStrict) { }
+export class BookingWhereInput extends PartialType(BookingWhereInputStrict) {}
 
 @InputType()
 export class BookingListRelationFilter {

@@ -8,4 +8,4 @@ import { ManagersController } from './rest/managers.controller';
   exports: [ManagersService],
   controllers: [ManagersController],
 })
-export class ManagersModule { }
+export class ManagersModule {}
