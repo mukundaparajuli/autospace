@@ -1,8 +1,8 @@
 import { Injectable } from '@nestjs/common';
-import { FindManyAdminArgs, FindUniqueAdminArgs } from './dtos/find.args';
 import { PrismaService } from 'src/common/prisma/prisma.service';
 import { CreateAdminInput } from './dtos/create-admin.input';
 import { UpdateAdminInput } from './dtos/update-admin.input';
+import { FindUniqueAdminArgs } from './dtos/find.args';
 
 @Injectable()
 export class AdminsService {

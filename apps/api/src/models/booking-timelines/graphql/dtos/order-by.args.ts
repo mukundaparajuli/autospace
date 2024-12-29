@@ -8,15 +8,18 @@ import { ValetOrderByWithRelationInput } from 'src/models/valets/graphql/dtos/or
 @InputType()
 export class BookingTimelineOrderByWithRelationInputStrict
   implements
-    RestrictProperties<
-      BookingTimelineOrderByWithRelationInputStrict,
-      Prisma.BookingTimelineOrderByWithRelationInput
-    >
-{
+  RestrictProperties<
+    BookingTimelineOrderByWithRelationInputStrict,
+    Prisma.BookingTimelineOrderByWithRelationInput
+  > {
   @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
+
   timestamp: Prisma.SortOrder;
+
+  @Field(() => Prisma.SortOrder)
   status: Prisma.SortOrder;
+
   bookingId: Prisma.SortOrder;
   valetId: Prisma.SortOrder;
   managerId: Prisma.SortOrder;
@@ -29,7 +32,7 @@ export class BookingTimelineOrderByWithRelationInputStrict
 @InputType()
 export class BookingTimelineOrderByWithRelationInput extends PartialType(
   BookingTimelineOrderByWithRelationInputStrict,
-) {}
+) { }
 
 @InputType()
 export class BookingTimelineOrderByRelationAggregateInput {

@@ -11,36 +11,37 @@ export class UserWhereUniqueInput {
 @InputType()
 export class UserWhereInputStrict
   implements
-  RestrictProperties<
-    UserWhereInputStrict,
-    Omit<
-      Prisma.UserWhereInput,
-      'Credentials' | 'AuthProvider' | 'Admin' | 'image'
+    RestrictProperties<
+      UserWhereInputStrict,
+      Omit<
+        Prisma.UserWhereInput,
+        'Credentials' | 'AuthProvider' | 'Admin' | 'image'
+      >
     >
-  > {
+{
   Customer: CustomerRelationFilter;
   Valet:
     | (Prisma.Without<
-      Prisma.ValetNullableScalarRelationFilter,
-      Prisma.ValetWhereInput
-    > &
-      Prisma.ValetWhereInput)
+        Prisma.ValetNullableScalarRelationFilter,
+        Prisma.ValetWhereInput
+      > &
+        Prisma.ValetWhereInput)
     | (Prisma.Without<
-      Prisma.ValetWhereInput,
-      Prisma.ValetNullableScalarRelationFilter
-    > &
-      Prisma.ValetNullableScalarRelationFilter);
+        Prisma.ValetWhereInput,
+        Prisma.ValetNullableScalarRelationFilter
+      > &
+        Prisma.ValetNullableScalarRelationFilter);
   Manager:
     | (Prisma.Without<
-      Prisma.ManagerNullableScalarRelationFilter,
-      Prisma.ManagerWhereInput
-    > &
-      Prisma.ManagerWhereInput)
+        Prisma.ManagerNullableScalarRelationFilter,
+        Prisma.ManagerWhereInput
+      > &
+        Prisma.ManagerWhereInput)
     | (Prisma.Without<
-      Prisma.ManagerWhereInput,
-      Prisma.ManagerNullableScalarRelationFilter
-    > &
-      Prisma.ManagerNullableScalarRelationFilter);
+        Prisma.ManagerWhereInput,
+        Prisma.ManagerNullableScalarRelationFilter
+      > &
+        Prisma.ManagerNullableScalarRelationFilter);
   id: string;
   name: string;
   createdAt: Date;
@@ -52,7 +53,7 @@ export class UserWhereInputStrict
 }
 
 @InputType()
-export class UserWhereInput extends PartialType(UserWhereInputStrict) { }
+export class UserWhereInput extends PartialType(UserWhereInputStrict) {}
 
 @InputType()
 export class UserListRelationFilter {

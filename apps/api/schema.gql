@@ -26,11 +26,101 @@ type Customer {
   updatedAt: DateTime!
 }
 
+type Admin {
+  id: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+}
+
+type Manager {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  displayName: String!
+  companyId: String!
+}
+
+type Address {
+  id: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  addressName: String!
+  lat: Int!
+  long: Int!
+}
+
+type Garage {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  companyId: String!
+  image: [String!]!
+  description: String!
+  garageName: String!
+  addressId: String!
+}
+
+type ValetAssignment {
+  pickUpLat: Int
+  pickUpLong: Int
+  returnLat: Int
+  returnLong: Int
+  pickupValetId: String
+  returnValetId: String
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  bookingId: String!
+}
+
+type Verification {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  verified: Boolean!
+  adminId: String!
+  garageId: String!
+}
+
+type Review {
+  rating: Int
+  comment: String
+  id: Int!
+  customerId: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  garageId: String!
+}
+
+type Company {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  description: String!
+  displayName: String!
+}
+
 type Query {
   users: [User!]!
   user(where: UserWhereUniqueInput!): User!
   customers: [Customer!]!
   customer(where: CustomerWhereUniqueInput!): Customer!
+  admins: [Admin!]!
+  admin(where: AdminWhereUniqueInput!): Admin!
+  managers: [Manager!]!
+  manager(where: ManagerWhereUniqueInput!): Manager!
+  companies: [Company!]!
+  company(where: CompanyWhereUniqueInput!): Company!
+  addresses: [Address!]!
+  address(where: AddressWhereUniqueInput!): Address!
+  garages: [Garage!]!
+  garage(where: GarageWhereUniqueInput!): Garage!
+  valetAssignments: [ValetAssignment!]!
+  valetAssignment(where: ValetAssignmentWhereUniqueInput!): ValetAssignment!
+  verifications: [Verification!]!
+  verification(where: VerificationWhereUniqueInput!): Verification!
+  reviews: [Review!]!
+  review(where: ReviewWhereUniqueInput!): Review!
 }
 
 input UserWhereUniqueInput {
@@ -39,6 +129,38 @@ input UserWhereUniqueInput {
 
 input CustomerWhereUniqueInput {
   id: String!
+}
+
+input AdminWhereUniqueInput {
+  id: String!
+}
+
+input ManagerWhereUniqueInput {
+  id: String!
+}
+
+input CompanyWhereUniqueInput {
+  id: String!
+}
+
+input AddressWhereUniqueInput {
+  id: String!
+}
+
+input GarageWhereUniqueInput {
+  id: String!
+}
+
+input ValetAssignmentWhereUniqueInput {
+  id: String!
+}
+
+input VerificationWhereUniqueInput {
+  id: String!
+}
+
+input ReviewWhereUniqueInput {
+  id: Int!
 }
 
 type Mutation {
@@ -50,6 +172,30 @@ type Mutation {
   createCustomer(createCustomerInput: CreateCustomerInput!): Customer!
   updateCustomer(updateCustomerInput: UpdateCustomerInput!): Customer!
   removeCustomer(where: CustomerWhereUniqueInput!): Customer!
+  createAdmin(createAdminInput: CreateAdminInput!): Admin!
+  updateAdmin(updateAdminInput: UpdateAdminInput!): Admin!
+  removeAdmin(where: AdminWhereUniqueInput!): Admin!
+  createManager(createManagerInput: CreateManagerInput!): Manager!
+  updateManager(updateManagerInput: UpdateManagerInput!): Manager!
+  removeManager(where: ManagerWhereUniqueInput!): Manager!
+  createCompany(createCompanyInput: CreateCompanyInput!): Company!
+  updateCompany(updateCompanyInput: UpdateCompanyInput!): Company!
+  removeCompany(where: CompanyWhereUniqueInput!): Company!
+  createAddress(createAddressInput: CreateAddressInput!): Address!
+  updateAddress(updateAddressInput: UpdateAddressInput!): Address!
+  removeAddress(where: AddressWhereUniqueInput!): Address!
+  createGarage(createGarageInput: CreateGarageInput!): Garage!
+  updateGarage(updateGarageInput: UpdateGarageInput!): Garage!
+  removeGarage(where: GarageWhereUniqueInput!): Garage!
+  createValetAssignment(createValetAssignmentInput: CreateValetAssignmentInput!): ValetAssignment!
+  updateValetAssignment(updateValetAssignmentInput: UpdateValetAssignmentInput!): ValetAssignment!
+  removeValetAssignment(where: ValetAssignmentWhereUniqueInput!): ValetAssignment!
+  createVerification(createVerificationInput: CreateVerificationInput!): Verification!
+  updateVerification(updateVerificationInput: UpdateVerificationInput!): Verification!
+  removeVerification(where: VerificationWhereUniqueInput!): Verification!
+  createReview(createReviewInput: CreateReviewInput!): Review!
+  updateReview(updateReviewInput: UpdateReviewInput!): Review!
+  removeReview(where: ReviewWhereUniqueInput!): Review!
 }
 
 input RegisterWithCredentialsInput {
@@ -90,4 +236,108 @@ input CreateCustomerInput {
 input UpdateCustomerInput {
   id: String!
   displayName: String
+}
+
+input CreateAdminInput {
+  id: String
+}
+
+input UpdateAdminInput {
+  id: String!
+}
+
+input CreateManagerInput {
+  id: String!
+  displayName: String!
+  companyId: String!
+}
+
+input UpdateManagerInput {
+  id: String!
+  displayName: String
+  companyId: String
+}
+
+input CreateCompanyInput {
+  id: String!
+  description: String!
+  displayName: String!
+}
+
+input UpdateCompanyInput {
+  id: String!
+  description: String
+  displayName: String
+}
+
+input CreateAddressInput {
+  id: String
+  addressName: String!
+  lat: Int!
+  long: Int!
+}
+
+input UpdateAddressInput {
+  id: String!
+  addressName: String
+  lat: Int
+  long: Int
+}
+
+input CreateGarageInput {
+  id: String!
+  companyId: String!
+  image: [String!]!
+  description: String!
+  garageName: String!
+  addressId: String!
+}
+
+input UpdateGarageInput {
+  id: String!
+  companyId: String
+  image: [String!]
+  description: String
+  garageName: String
+  addressId: String
+}
+
+input CreateValetAssignmentInput {
+  id: String!
+  bookingId: String!
+}
+
+input UpdateValetAssignmentInput {
+  id: String!
+  bookingId: String
+}
+
+input CreateVerificationInput {
+  id: String!
+  verified: Boolean!
+  adminId: String!
+  garageId: String!
+}
+
+input UpdateVerificationInput {
+  id: String!
+  verified: Boolean
+  adminId: String
+  garageId: String
+}
+
+input CreateReviewInput {
+  rating: Int
+  comment: String
+  id: Int!
+  customerId: String!
+  garageId: String!
+}
+
+input UpdateReviewInput {
+  rating: Int
+  comment: String
+  id: Int!
+  customerId: String
+  garageId: String
 }

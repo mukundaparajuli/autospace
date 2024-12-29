@@ -19,7 +19,7 @@ export class UsersService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly jwtService: JwtService,
-  ) { }
+  ) {}
 
   async registerUserWithCredentialsInput({
     name,

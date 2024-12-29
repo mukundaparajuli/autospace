@@ -15,8 +15,7 @@ export class AdminWhereUniqueInput {
 
 @InputType()
 export class AdminWhereInputStrict
-  implements RestrictProperties<AdminWhereInputStrict, Prisma.AdminWhereInput>
-{
+  implements RestrictProperties<AdminWhereInputStrict, Prisma.AdminWhereInput> {
   id: StringFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
@@ -31,7 +30,7 @@ export class AdminWhereInputStrict
 }
 
 @InputType()
-export class AdminWhereInput extends PartialType(AdminWhereInputStrict) {}
+export class AdminWhereInput extends PartialType(AdminWhereInputStrict) { }
 
 @InputType()
 export class AdminListRelationFilter {

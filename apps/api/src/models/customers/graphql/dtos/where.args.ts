@@ -5,9 +5,10 @@ import {
   RestrictProperties,
   StringFilter,
 } from 'src/common/dtos/common.input';
-import { BookingListRelationFilter, BookingRelationFilter } from 'src/models/bookings/graphql/dtos/where.args';
-import { ReviewListRelationFilter, ReviewRelationFilter } from 'src/models/reviews/graphql/dtos/where.args';
-import { UserRelationFilter, UserWhereInput } from 'src/models/users/graphql/dtos/where.args';
+import { BookingListRelationFilter } from 'src/models/bookings/graphql/dtos/where.args';
+import { ReviewListRelationFilter } from 'src/models/reviews/graphql/dtos/where.args';
+import { UserOrderByRelationAggregateInput } from 'src/models/users/graphql/dtos/order-by.args';
+import { UserRelationFilter } from 'src/models/users/graphql/dtos/where.args';
 
 @InputType()
 export class CustomerWhereUniqueInput {
@@ -18,16 +19,14 @@ export class CustomerWhereUniqueInput {
 export class CustomerWhereInputStrict
   implements
   RestrictProperties<CustomerWhereInputStrict, Prisma.CustomerWhereInput> {
-
-  User: UserRelationFilter
-  id: StringFilter
-  createdAt: DateTimeFilter
-  updatedAt: DateTimeFilter
-  displayName: StringFilter
-  Bookings: BookingListRelationFilter
-  Reviews: ReviewListRelationFilter
-
-
+  User: (Prisma.Without<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput> & Prisma.UserWhereInput) | (Prisma.Without<Prisma.UserWhereInput, Prisma.UserScalarRelationFilter> & Prisma.UserScalarRelationFilter);
+  // User: UserRelationFilter;
+  id: StringFilter;
+  createdAt: DateTimeFilter;
+  updatedAt: DateTimeFilter;
+  displayName: StringFilter;
+  Bookings: BookingListRelationFilter;
+  Reviews: ReviewListRelationFilter;
 
   AND: CustomerWhereInput[];
   OR: CustomerWhereInput[];

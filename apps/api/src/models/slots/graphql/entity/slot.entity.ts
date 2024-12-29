@@ -15,6 +15,6 @@ export class Slot implements RestrictProperties<Slot, SlotType> {
   breadth: number;
   height: number;
   slotType: $Enums.SlotType;
+
   // Todo Add below to make optional fields optional.
-  // @Field({ nullable: true })
 }

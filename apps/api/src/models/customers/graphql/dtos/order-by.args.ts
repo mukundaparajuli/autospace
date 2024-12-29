@@ -8,11 +8,11 @@ import { UserOrderByWithRelationInput } from 'src/models/users/graphql/dtos/orde
 @InputType()
 export class CustomerOrderByWithRelationInputStrict
   implements
-  RestrictProperties<
-    CustomerOrderByWithRelationInputStrict,
-    Prisma.CustomerOrderByWithRelationInput
-  > {
-
+    RestrictProperties<
+      CustomerOrderByWithRelationInputStrict,
+      Prisma.CustomerOrderByWithRelationInput
+    >
+{
   User: UserOrderByWithRelationInput;
 
   @Field(() => Prisma.SortOrder)
@@ -32,7 +32,7 @@ export class CustomerOrderByWithRelationInputStrict
 @InputType()
 export class CustomerOrderByWithRelationInput extends PartialType(
   CustomerOrderByWithRelationInputStrict,
-) { }
+) {}
 
 @InputType()
 export class CustomerOrderByRelationAggregateInput {

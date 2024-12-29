@@ -1,5 +1,5 @@
 import { Field, InputType, PartialType } from '@nestjs/graphql';
-import { $Enums, Prisma } from '@prisma/client';
+import { $Enums, BookingStatus, Prisma } from '@prisma/client';
 import {
   DateTimeFilter,
   FloatFilter,
@@ -17,11 +17,24 @@ export class BookingWhereUniqueInput {
   id: string;
 }
 
+
+
+@InputType()
+export class EnumBookingStatusFilter {
+  @Field(() => BookingStatus, { nullable: true })
+  equals: BookingStatus;
+  @Field(() => [BookingStatus], { nullable: true })
+  in: BookingStatus[]
+  @Field(() => [BookingStatus], { nullable: true })
+  notIn: BookingStatus[]
+  @Field(() => BookingStatus, { nullable: true })
+  not: BookingStatus
+}
+
 @InputType()
 export class BookingWhereInputStrict
   implements
-    RestrictProperties<BookingWhereInputStrict, Prisma.BookingWhereInput>
-{
+  RestrictProperties<BookingWhereInputStrict, Prisma.BookingWhereInput> {
   id: StringFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
@@ -32,8 +45,7 @@ export class BookingWhereInputStrict
   vehicleNumber: StringFilter;
   phoneNumber: StringFilter;
   passcode: StringFilter;
-  @Field(() => $Enums.BookingStatus)
-  status: $Enums.BookingStatus | Prisma.EnumBookingStatusFilter<'Booking'>;
+  status: EnumBookingStatusFilter;
   slotId: StringFilter;
   customerId: StringFilter;
   bookingTimelineId: IntFilter;
@@ -49,7 +61,7 @@ export class BookingWhereInputStrict
 }
 
 @InputType()
-export class BookingWhereInput extends PartialType(BookingWhereInputStrict) {}
+export class BookingWhereInput extends PartialType(BookingWhereInputStrict) { }
 
 @InputType()
 export class BookingListRelationFilter {

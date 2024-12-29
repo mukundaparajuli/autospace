@@ -1,5 +1,5 @@
 import { SlotEntity } from '../entity/slot.entity';
-import { PickType } from '@nestjs/graphql';
+import { PickType } from '@nestjs/swagger';
 
 export class CreateSlot extends PickType(SlotEntity, [
   'id',
@@ -10,4 +10,4 @@ export class CreateSlot extends PickType(SlotEntity, [
   'displayName',
   'garageId',
   'pricePerHour',
-]) {}
+]) { }

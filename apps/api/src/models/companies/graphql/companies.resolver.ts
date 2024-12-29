@@ -14,7 +14,7 @@ export class CompaniesResolver {
   constructor(
     private readonly companiesService: CompaniesService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated('manager')
   @Mutation(() => Company)

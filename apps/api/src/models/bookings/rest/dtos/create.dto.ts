@@ -1,5 +1,5 @@
 import { BookingEntity } from '../entity/booking.entity';
-import { PickType } from '@nestjs/graphql';
+import { PickType } from '@nestjs/swagger';
 
 export class CreateBooking extends PickType(BookingEntity, [
   'id',
@@ -14,4 +14,4 @@ export class CreateBooking extends PickType(BookingEntity, [
   'slotId',
   'customerId',
   'bookingTimelineId',
-]) {}
+]) { }

@@ -7,10 +7,11 @@ import { GarageOrderByRelationAggregateInput } from 'src/models/garages/graphql/
 @InputType()
 export class ReviewOrderByWithRelationInputStrict
   implements
-  RestrictProperties<
-    ReviewOrderByWithRelationInputStrict,
-    Prisma.ReviewOrderByWithRelationInput
-  > {
+    RestrictProperties<
+      ReviewOrderByWithRelationInputStrict,
+      Prisma.ReviewOrderByWithRelationInput
+    >
+{
   @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
   @Field(() => Prisma.SortOrder)
@@ -34,7 +35,7 @@ export class ReviewOrderByWithRelationInputStrict
 @InputType()
 export class ReviewOrderByWithRelationInput extends PartialType(
   ReviewOrderByWithRelationInputStrict,
-) { }
+) {}
 
 @InputType()
 export class ReviewOrderByRelationAggregateInput {

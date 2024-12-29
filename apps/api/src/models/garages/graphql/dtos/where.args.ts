@@ -19,7 +19,8 @@ export class GarageWhereUniqueInput {
 @InputType()
 export class GarageWhereInputStrict
   implements
-  RestrictProperties<GarageWhereInputStrict, Prisma.GarageWhereInput> {
+    RestrictProperties<GarageWhereInputStrict, Prisma.GarageWhereInput>
+{
   id: StringFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
@@ -42,7 +43,7 @@ export class GarageWhereInputStrict
 }
 
 @InputType()
-export class GarageWhereInput extends PartialType(GarageWhereInputStrict) { }
+export class GarageWhereInput extends PartialType(GarageWhereInputStrict) {}
 
 @InputType()
 export class GarageListRelationFilter {

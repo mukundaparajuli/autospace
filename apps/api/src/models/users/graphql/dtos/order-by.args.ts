@@ -6,17 +6,17 @@ import { RestrictProperties } from 'src/common/dtos/common.input';
 @InputType()
 export class UserOrderByWithRelationInputStrict
   implements
-  RestrictProperties<
-    UserOrderByWithRelationInputStrict,
-    Omit<
-      Prisma.UserOrderByWithRelationInput,
-      'Credentials' | 'AuthProvider' | 'Admin' | 'image'
+    RestrictProperties<
+      UserOrderByWithRelationInputStrict,
+      Omit<
+        Prisma.UserOrderByWithRelationInput,
+        'Credentials' | 'AuthProvider' | 'Admin' | 'image'
+      >
     >
-  > {
+{
   Valet: Prisma.ValetOrderByWithRelationInput;
   Manager: Prisma.ManagerOrderByWithRelationInput;
   Customer: Prisma.CustomerOrderByWithRelationInput;
-
 
   @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
