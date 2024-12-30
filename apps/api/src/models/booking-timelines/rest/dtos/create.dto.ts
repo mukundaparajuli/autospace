@@ -5,4 +5,4 @@ export class CreateBookingTimeline extends PickType(BookingTimelineEntity, [
   'id',
   'status',
   'bookingId',
-]) { }
+]) {}

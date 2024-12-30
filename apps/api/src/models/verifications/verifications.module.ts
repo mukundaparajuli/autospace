@@ -9,4 +9,4 @@ import { PrismaService } from 'src/common/prisma/prisma.service';
   exports: [VerificationsService],
   controllers: [VerificationsController],
 })
-export class VerificationsModule { }
+export class VerificationsModule {}

@@ -9,4 +9,4 @@ import { PrismaService } from 'src/common/prisma/prisma.service';
   exports: [ManagersService],
   controllers: [ManagersController],
 })
-export class ManagersModule { }
+export class ManagersModule {}

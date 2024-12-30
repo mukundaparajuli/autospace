@@ -9,10 +9,11 @@ import { ValetAssignmentOrderByWithRelationInput } from 'src/models/valet-assign
 @InputType()
 export class BookingOrderByWithRelationInputStrict
   implements
-  RestrictProperties<
-    BookingOrderByWithRelationInputStrict,
-    Prisma.BookingOrderByWithRelationInput
-  > {
+    RestrictProperties<
+      BookingOrderByWithRelationInputStrict,
+      Prisma.BookingOrderByWithRelationInput
+    >
+{
   bookingTimelineId: Prisma.SortOrder;
   @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
@@ -50,7 +51,7 @@ export class BookingOrderByWithRelationInputStrict
 @InputType()
 export class BookingOrderByWithRelationInput extends PartialType(
   BookingOrderByWithRelationInputStrict,
-) { }
+) {}
 
 @InputType()
 export class BookingOrderByRelationAggregateInput {

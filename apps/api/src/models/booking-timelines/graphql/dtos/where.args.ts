@@ -20,20 +20,21 @@ export class EnumBookingStatusFilter {
   @Field(() => BookingStatus, { nullable: true })
   equals: BookingStatus;
   @Field(() => [BookingStatus], { nullable: true })
-  in: BookingStatus[]
+  in: BookingStatus[];
   @Field(() => [BookingStatus], { nullable: true })
-  notIn: BookingStatus[]
+  notIn: BookingStatus[];
   @Field(() => BookingStatus, { nullable: true })
-  not: BookingStatus
+  not: BookingStatus;
 }
 
 @InputType()
 export class BookingTimelineWhereInputStrict
   implements
-  RestrictProperties<
-    BookingTimelineWhereInputStrict,
-    Prisma.BookingTimelineWhereInput
-  > {
+    RestrictProperties<
+      BookingTimelineWhereInputStrict,
+      Prisma.BookingTimelineWhereInput
+    >
+{
   id: IntFilter;
   timestamp: DateTimeFilter;
 
@@ -56,7 +57,7 @@ export class BookingTimelineWhereInputStrict
 @InputType()
 export class BookingTimelineWhereInput extends PartialType(
   BookingTimelineWhereInputStrict,
-) { }
+) {}
 
 @InputType()
 export class BookingTimelineListRelationFilter {

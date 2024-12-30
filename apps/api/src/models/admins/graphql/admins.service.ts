@@ -6,7 +6,7 @@ import { FindUniqueAdminArgs } from './dtos/find.args';
 
 @Injectable()
 export class AdminsService {
-  constructor(private readonly prisma: PrismaService) { }
+  constructor(private readonly prisma: PrismaService) {}
   create(createAdminInput: CreateAdminInput) {
     return this.prisma.admin.create({
       data: createAdminInput,

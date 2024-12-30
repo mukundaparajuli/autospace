@@ -5,4 +5,4 @@ export class CreateCompany extends PickType(CompanyEntity, [
   'id',
   'displayName',
   'description',
-]) { }
+]) {}

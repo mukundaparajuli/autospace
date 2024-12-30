@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { CustomersService } from './customers.service';
 import { Customer } from './entity/customer.entity';
 import { FindUniqueCustomerArgs } from './dtos/find.args';
@@ -8,13 +8,15 @@ import { checkRowLevelPermission } from 'src/common/auth/util';
 import { GetUserType } from 'src/common/types';
 import { AllowAuthenticated, GetUser } from 'src/common/auth/auth.decorator';
 import { PrismaService } from 'src/common/prisma/prisma.service';
+import { User } from 'src/models/users/graphql/entity/user.entity';
+import { Booking } from 'src/models/bookings/graphql/entity/booking.entity';
 
 @Resolver(() => Customer)
 export class CustomersResolver {
   constructor(
     private readonly customersService: CustomersService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated()
   @Mutation(() => Customer)
@@ -58,5 +60,32 @@ export class CustomersResolver {
     const customer = await this.prisma.customer.findUnique(args);
     checkRowLevelPermission(user, customer.id);
     return this.customersService.remove(args);
+  }
+
+  @ResolveField(() => User)
+  async user(@Parent() parent: Customer) {
+    return await this.prisma.user.findUnique({
+      where: {
+        id: parent.id
+      }
+    })
+  }
+
+  @ResolveField(() => [Booking])
+  async bookings(@Parent() parent: Customer) {
+    return await this.prisma.booking.findMany({
+      where: {
+        customerId: parent.id
+      }
+    })
+  }
+
+  @ResolveField(() => [Booking])
+  async reviews(@Parent() parent: Customer) {
+    return await this.prisma.review.findMany({
+      where: {
+        customerId: parent.id
+      }
+    })
   }
 }

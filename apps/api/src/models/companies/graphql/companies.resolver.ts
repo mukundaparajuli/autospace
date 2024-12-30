@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, Field, Parent, ResolveField } from '@nestjs/graphql';
 import { CompaniesService } from './companies.service';
 import { Company } from './entity/company.entity';
 import { FindUniqueCompanyArgs } from './dtos/find.args';
@@ -8,13 +8,14 @@ import { checkRowLevelPermission } from 'src/common/auth/util';
 import { GetUserType } from 'src/common/types';
 import { AllowAuthenticated, GetUser } from 'src/common/auth/auth.decorator';
 import { PrismaService } from 'src/common/prisma/prisma.service';
+import { Manager } from 'src/models/managers/graphql/entity/manager.entity';
 
 @Resolver(() => Company)
 export class CompaniesResolver {
   constructor(
     private readonly companiesService: CompaniesService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated('manager')
   @Mutation(() => Company)
@@ -58,5 +59,34 @@ export class CompaniesResolver {
     const company = await this.prisma.company.findUnique(args);
     checkRowLevelPermission(user, company.id);
     return this.companiesService.remove(args);
+  }
+
+  @ResolveField(() => [Manager])
+  async managers(@Parent() company: Company) {
+    return this.prisma.manager.findMany({
+      where: { companyId: company.id },
+    });
+  }
+
+
+  @ResolveField(() => [Manager])
+  async valets(@Parent() company: Company) {
+    return this.prisma.valet.findMany({
+      where: { companyId: company.id },
+    });
+  }
+
+  @ResolveField(() => [Manager])
+  async garages(@Parent() company: Company) {
+    return this.prisma.garage.findMany({
+      where: { companyId: company.id },
+    });
+  }
+
+  @ResolveField(() => [Manager])
+  async slots(@Parent() company: Company) {
+    return this.prisma.slot.findMany({
+      where: { companyId: company.id },
+    });
   }
 }

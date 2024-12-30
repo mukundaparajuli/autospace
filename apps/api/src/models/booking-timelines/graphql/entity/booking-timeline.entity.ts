@@ -4,7 +4,8 @@ import { RestrictProperties } from 'src/common/dtos/common.input';
 
 @ObjectType()
 export class BookingTimeline
-  implements RestrictProperties<BookingTimeline, BookingTimelineType> {
+  implements RestrictProperties<BookingTimeline, BookingTimelineType>
+{
   id: number;
 
   @Field({ nullable: true })

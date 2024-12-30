@@ -9,4 +9,4 @@ import { PrismaService } from 'src/common/prisma/prisma.service';
   exports: [SlotsService],
   controllers: [SlotsController],
 })
-export class SlotsModule { }
+export class SlotsModule {}

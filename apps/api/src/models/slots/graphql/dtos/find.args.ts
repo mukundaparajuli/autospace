@@ -16,10 +16,11 @@ registerEnumType(Prisma.SlotScalarFieldEnum, {
 @ArgsType()
 class FindManySlotArgsStrict
   implements
-  RestrictProperties<
-    FindManySlotArgsStrict,
-    Omit<Prisma.SlotFindManyArgs, 'include' | 'select'>
-  > {
+    RestrictProperties<
+      FindManySlotArgsStrict,
+      Omit<Prisma.SlotFindManyArgs, 'include' | 'select'>
+    >
+{
   where: SlotWhereInput;
   orderBy: SlotOrderByWithRelationInput[];
   cursor: SlotWhereUniqueInput;
@@ -30,7 +31,7 @@ class FindManySlotArgsStrict
 }
 
 @ArgsType()
-export class FindManySlotArgs extends PartialType(FindManySlotArgsStrict) { }
+export class FindManySlotArgs extends PartialType(FindManySlotArgsStrict) {}
 
 @ArgsType()
 export class FindUniqueSlotArgs {

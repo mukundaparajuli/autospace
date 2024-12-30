@@ -9,13 +9,13 @@ import { JwtModule } from '@nestjs/jwt';
 import { CustomersModule } from './models/customers/customers.module';
 import { AdminsModule } from './models/admins/admins.module';
 import { ManagersModule } from './models/managers/managers.module';
-import { ValetsModule } from './models/valets/valets.module';
+// import { ValetsModule } from './models/valets/valets.module';
 import { AddressesModule } from './models/addresses/addresses.module';
 import { GaragesModule } from './models/garages/garages.module';
-import { SlotsModule } from './models/slots/slots.module';
-import { BookingsModule } from './models/bookings/bookings.module';
+// import { SlotsModule } from './models/slots/slots.module';
+// import { BookingsModule } from './models/bookings/bookings.module';
 import { ValetAssignmentsModule } from './models/valet-assignments/valet-assignments.module';
-import { BookingTimelinesModule } from './models/booking-timelines/booking-timelines.module';
+// import { BookingTimelinesModule } from './models/booking-timelines/booking-timelines.module';
 import { VerificationsModule } from './models/verifications/verifications.module';
 import { ReviewsModule } from './models/reviews/reviews.module';
 import { CompaniesModule } from './models/companies/companies.module';
@@ -59,9 +59,8 @@ const MAX_AGE = 24 * 60 * 60;
     // BookingTimelinesModule,
     VerificationsModule,
     ReviewsModule,
-
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule { }
+export class AppModule {}

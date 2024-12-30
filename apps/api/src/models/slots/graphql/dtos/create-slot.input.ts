@@ -16,4 +16,4 @@ export class CreateSlotInput extends PickType(
     'slotType',
   ],
   InputType,
-) { }
+) {}

@@ -14,7 +14,7 @@ export class Booking implements RestrictProperties<Booking, BookingType> {
   endTime: Date;
 
   @Field(() => $Enums.BookingStatus)
-  status: $Enums.BookingStatus
+  status: $Enums.BookingStatus;
 
   vehicleNumber: string;
   phoneNumber: string;

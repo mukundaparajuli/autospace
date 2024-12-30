@@ -10,4 +10,4 @@ export class CreateSlot extends PickType(SlotEntity, [
   'displayName',
   'garageId',
   'pricePerHour',
-]) { }
+]) {}

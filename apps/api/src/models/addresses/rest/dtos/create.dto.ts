@@ -4,4 +4,4 @@ import { PickType } from '@nestjs/swagger';
 export class CreateAddress extends PickType(AddressEntity, [
   'id',
   'addressName',
-]) { }
+]) {}

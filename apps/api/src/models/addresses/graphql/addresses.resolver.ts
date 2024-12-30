@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { AddressesService } from './addresses.service';
 import { Address } from './entity/address.entity';
 import { FindUniqueAddressArgs } from './dtos/find.args';
@@ -8,13 +8,14 @@ import { checkRowLevelPermission } from 'src/common/auth/util';
 import { GetUserType } from 'src/common/types';
 import { AllowAuthenticated, GetUser } from 'src/common/auth/auth.decorator';
 import { PrismaService } from 'src/common/prisma/prisma.service';
+import { Garage } from 'src/models/garages/graphql/entity/garage.entity';
 
 @Resolver(() => Address)
 export class AddressesResolver {
   constructor(
     private readonly addressesService: AddressesService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated()
   @Mutation(() => Address)
@@ -58,5 +59,14 @@ export class AddressesResolver {
     const address = await this.prisma.address.findUnique(args);
     checkRowLevelPermission(user, address.id);
     return this.addressesService.remove(args);
+  }
+
+  @ResolveField(() => [Garage])
+  garages(@Parent() parent: Address) {
+    return this.prisma.garage.findMany({
+      where: {
+        addressId: parent.id
+      }
+    })
   }
 }

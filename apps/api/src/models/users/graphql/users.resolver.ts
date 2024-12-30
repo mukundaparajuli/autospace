@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { UsersService } from './users.service';
 import { User } from './entity/user.entity';
 import { FindUniqueUserArgs } from './dtos/find.args';
@@ -13,13 +13,14 @@ import { checkRowLevelPermission } from 'src/common/auth/util';
 import { GetUserType } from 'src/common/types';
 import { AllowAuthenticated, GetUser } from 'src/common/auth/auth.decorator';
 import { PrismaService } from 'src/common/prisma/prisma.service';
+import { Admin } from 'src/models/admins/graphql/entity/admin.entity';
 
 @Resolver(() => User)
 export class UsersResolver {
   constructor(
     private readonly usersService: UsersService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @Mutation(() => User)
   createUserWithCredentailsInput(
@@ -77,4 +78,43 @@ export class UsersResolver {
     checkRowLevelPermission(user, user.id);
     return this.usersService.remove(args);
   }
+
+  @ResolveField(() => Admin, { nullable: true })
+  async admin(@Parent() user: User) {
+    return this.prisma.admin.findUnique({
+      where: {
+        id: user.id,
+      }
+    });
+  }
+
+  @ResolveField(() => Admin, { nullable: true })
+  async manager(@Parent() user: User) {
+    return this.prisma.manager.findUnique({
+      where: {
+        id: user.id,
+      }
+    });
+  }
+
+  @ResolveField(() => Admin, { nullable: true })
+  async valet(@Parent() user: User) {
+    return this.prisma.valet.findUnique({
+      where: {
+        id: user.id,
+      }
+    });
+  }
+
+
+  @ResolveField(() => Admin, { nullable: true })
+  async customer(@Parent() user: User) {
+    return this.prisma.customer.findUnique({
+      where: {
+        id: user.id,
+      }
+    });
+  }
 }
+
+

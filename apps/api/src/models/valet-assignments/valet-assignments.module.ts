@@ -9,4 +9,4 @@ import { PrismaService } from 'src/common/prisma/prisma.service';
   exports: [ValetAssignmentsService],
   controllers: [ValetAssignmentsController],
 })
-export class ValetAssignmentsModule { }
+export class ValetAssignmentsModule {}

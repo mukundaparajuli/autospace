@@ -8,6 +8,10 @@ type User {
   image: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  admin: Admin
+  manager: Admin
+  valet: Admin
+  customer: Admin
 }
 
 """
@@ -19,6 +23,15 @@ type LoginOutput {
   token: String!
 }
 
+type Admin {
+  id: String
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  user: User!
+  verifications: [Verification!]!
+  verificationCount: Int!
+}
+
 type Customer {
   id: ID
   displayName: String!
@@ -26,10 +39,13 @@ type Customer {
   updatedAt: DateTime!
 }
 
-type Admin {
-  id: String
+type Verification {
+  id: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  verified: Boolean!
+  adminId: String!
+  garageId: String!
 }
 
 type Manager {
@@ -71,15 +87,6 @@ type ValetAssignment {
   createdAt: DateTime!
   updatedAt: DateTime!
   bookingId: String!
-}
-
-type Verification {
-  id: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  verified: Boolean!
-  adminId: String!
-  garageId: String!
 }
 
 type Review {

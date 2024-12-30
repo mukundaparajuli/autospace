@@ -14,4 +14,4 @@ export class CreateBooking extends PickType(BookingEntity, [
   'slotId',
   'customerId',
   'bookingTimelineId',
-]) { }
+]) {}

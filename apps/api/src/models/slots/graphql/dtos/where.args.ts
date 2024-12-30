@@ -17,16 +17,17 @@ export class EnumSlotTypeFilter {
   @Field(() => $Enums.SlotType, { nullable: true })
   equals?: $Enums.SlotType;
   @Field(() => [$Enums.SlotType], { nullable: true })
-  in?: $Enums.SlotType[]
+  in?: $Enums.SlotType[];
   @Field(() => [$Enums.SlotType], { nullable: true })
-  notIn?: $Enums.SlotType[]
+  notIn?: $Enums.SlotType[];
   @Field(() => $Enums.SlotType, { nullable: true })
-  not?: $Enums.SlotType
+  not?: $Enums.SlotType;
 }
 
 @InputType()
 export class SlotWhereInputStrict
-  implements RestrictProperties<SlotWhereInputStrict, Prisma.SlotWhereInput> {
+  implements RestrictProperties<SlotWhereInputStrict, Prisma.SlotWhereInput>
+{
   id: StringFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
@@ -42,26 +43,26 @@ export class SlotWhereInputStrict
   companyId: StringFilter;
   Garage:
     | (Prisma.Without<
-      Prisma.GarageScalarRelationFilter,
-      Prisma.GarageWhereInput
-    > &
-      Prisma.GarageWhereInput)
+        Prisma.GarageScalarRelationFilter,
+        Prisma.GarageWhereInput
+      > &
+        Prisma.GarageWhereInput)
     | (Prisma.Without<
-      Prisma.GarageWhereInput,
-      Prisma.GarageScalarRelationFilter
-    > &
-      Prisma.GarageScalarRelationFilter);
+        Prisma.GarageWhereInput,
+        Prisma.GarageScalarRelationFilter
+      > &
+        Prisma.GarageScalarRelationFilter);
   Company:
     | (Prisma.Without<
-      Prisma.CompanyScalarRelationFilter,
-      Prisma.CompanyWhereInput
-    > &
-      Prisma.CompanyWhereInput)
+        Prisma.CompanyScalarRelationFilter,
+        Prisma.CompanyWhereInput
+      > &
+        Prisma.CompanyWhereInput)
     | (Prisma.Without<
-      Prisma.CompanyWhereInput,
-      Prisma.CompanyScalarRelationFilter
-    > &
-      Prisma.CompanyScalarRelationFilter);
+        Prisma.CompanyWhereInput,
+        Prisma.CompanyScalarRelationFilter
+      > &
+        Prisma.CompanyScalarRelationFilter);
   Bookings: Prisma.BookingListRelationFilter;
   // Todo: Add the below field decorator only to the $Enums types.
 
@@ -71,7 +72,7 @@ export class SlotWhereInputStrict
 }
 
 @InputType()
-export class SlotWhereInput extends PartialType(SlotWhereInputStrict) { }
+export class SlotWhereInput extends PartialType(SlotWhereInputStrict) {}
 
 @InputType()
 export class SlotListRelationFilter {

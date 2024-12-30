@@ -7,4 +7,4 @@ export class CreateReview extends PickType(ReviewEntity, [
   'customerId',
   'garageId',
   'rating',
-]) { }
+]) {}
