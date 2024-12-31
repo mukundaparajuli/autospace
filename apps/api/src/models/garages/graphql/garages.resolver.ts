@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { GaragesService } from './garages.service';
 import { Garage } from './entity/garage.entity';
 import { FindUniqueGarageArgs } from './dtos/find.args';
@@ -18,7 +25,7 @@ export class GaragesResolver {
   constructor(
     private readonly garagesService: GaragesService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Garage)
@@ -68,44 +75,44 @@ export class GaragesResolver {
   async company(@Parent() parent: Garage) {
     return await this.prisma.company.findUnique({
       where: {
-        id: parent.companyId
-      }
-    })
+        id: parent.companyId,
+      },
+    });
   }
 
   @ResolveField(() => Company)
   async address(@Parent() parent: Garage) {
     return await this.prisma.address.findUnique({
       where: {
-        id: parent.addressId
-      }
-    })
+        id: parent.addressId,
+      },
+    });
   }
 
   @ResolveField(() => [Slot])
   async slots(@Parent() parent: Garage) {
     return await this.prisma.slot.findMany({
       where: {
-        garageId: parent.id
-      }
-    })
+        garageId: parent.id,
+      },
+    });
   }
 
   @ResolveField(() => [Verification])
   async verifications(@Parent() parent: Garage) {
     return await this.prisma.verification.findMany({
       where: {
-        garageId: parent.id
-      }
-    })
+        garageId: parent.id,
+      },
+    });
   }
 
   @ResolveField(() => [Review])
   async reviews(@Parent() parent: Garage) {
     return await this.prisma.review.findMany({
       where: {
-        garageId: parent.id
-      }
-    })
+        garageId: parent.id,
+      },
+    });
   }
 }

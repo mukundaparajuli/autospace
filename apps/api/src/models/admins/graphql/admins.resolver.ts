@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { AdminsService } from './admins.service';
 import { Admin } from './entity/admin.entity';
 import { FindUniqueAdminArgs } from './dtos/find.args';
@@ -16,7 +23,7 @@ export class AdminsResolver {
   constructor(
     private readonly adminsService: AdminsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Admin)
@@ -66,26 +73,26 @@ export class AdminsResolver {
   async user(@Parent() parent: Admin) {
     return this.prisma.user.findUnique({
       where: {
-        id: parent.id
-      }
-    })
+        id: parent.id,
+      },
+    });
   }
 
   @ResolveField(() => [Verification])
   async verifications(@Parent() parent: Admin) {
     return this.prisma.verification.findMany({
       where: {
-        adminId: parent.id
-      }
-    })
+        adminId: parent.id,
+      },
+    });
   }
 
   @ResolveField(() => Number)
   async verificationCount(@Parent() parent: Admin) {
     return this.prisma.verification.count({
       where: {
-        adminId: parent.id
-      }
-    })
+        adminId: parent.id,
+      },
+    });
   }
 }

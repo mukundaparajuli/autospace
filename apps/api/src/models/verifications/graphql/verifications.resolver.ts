@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
 import { VerificationsService } from './verifications.service';
 import { Verification } from './entity/verification.entity';
 import { FindUniqueVerificationArgs } from './dtos/find.args';
@@ -8,13 +8,14 @@ import { checkRowLevelPermission } from 'src/common/auth/util';
 import { GetUserType } from 'src/common/types';
 import { AllowAuthenticated, GetUser } from 'src/common/auth/auth.decorator';
 import { PrismaService } from 'src/common/prisma/prisma.service';
+import { Admin } from 'src/models/admins/graphql/entity/admin.entity';
 
 @Resolver(() => Verification)
 export class VerificationsResolver {
   constructor(
     private readonly verificationsService: VerificationsService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated()
   @Mutation(() => Verification)
@@ -58,5 +59,15 @@ export class VerificationsResolver {
     const verification = await this.prisma.verification.findUnique(args);
     checkRowLevelPermission(user, verification.id);
     return this.verificationsService.remove(args);
+  }
+
+  @ResolveField(() => Admin)
+  async admin(@Parent() parent: Verification) {
+    return this.prisma.admin.findUnique({ where: { id: parent.adminId } });
+  }
+
+  @ResolveField(() => Admin)
+  async garage(@Parent() parent: Verification) {
+    return this.prisma.admin.findUnique({ where: { id: parent.garageId } });
   }
 }

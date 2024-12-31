@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, Field, Parent, ResolveField } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  Parent,
+  ResolveField,
+} from '@nestjs/graphql';
 import { CompaniesService } from './companies.service';
 import { Company } from './entity/company.entity';
 import { FindUniqueCompanyArgs } from './dtos/find.args';
@@ -15,7 +22,7 @@ export class CompaniesResolver {
   constructor(
     private readonly companiesService: CompaniesService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated('manager')
   @Mutation(() => Company)
@@ -67,7 +74,6 @@ export class CompaniesResolver {
       where: { companyId: company.id },
     });
   }
-
 
   @ResolveField(() => [Manager])
   async valets(@Parent() company: Company) {

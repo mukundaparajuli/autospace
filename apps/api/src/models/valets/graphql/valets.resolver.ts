@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { ValetsService } from './valets.service';
 import { Valet } from './entity/valet.entity';
 import { FindManyValetArgs, FindUniqueValetArgs } from './dtos/find.args';
@@ -18,7 +25,7 @@ export class ValetsResolver {
   constructor(
     private readonly valetsService: ValetsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Valet)
@@ -68,45 +75,44 @@ export class ValetsResolver {
   async user(@Parent() parent: Valet) {
     return await this.prisma.user.findUnique({
       where: {
-        id: parent.id
-      }
-    })
+        id: parent.id,
+      },
+    });
   }
-
 
   @ResolveField(() => Company)
   async company(@Parent() parent: Valet) {
     return await this.prisma.company.findUnique({
       where: {
-        id: parent.companyId
-      }
-    })
+        id: parent.companyId,
+      },
+    });
   }
 
   @ResolveField(() => [BookingTimeline])
   async bookingTimelines(@Parent() parent: Valet) {
     return await this.prisma.bookingTimeline.findMany({
       where: {
-        valetId: parent.id
-      }
-    })
+        valetId: parent.id,
+      },
+    });
   }
 
   @ResolveField(() => [ValetAssignment])
   async pickupValetAssignments(@Parent() parent: Valet) {
     return await this.prisma.valetAssignment.findMany({
       where: {
-        pickupValetId: parent.id
-      }
-    })
+        pickupValetId: parent.id,
+      },
+    });
   }
 
   @ResolveField(() => [ValetAssignment])
   async returnValetAssignments(@Parent() parent: Valet) {
     return await this.prisma.valetAssignment.findMany({
       where: {
-        returnValetId: parent.id
-      }
-    })
+        returnValetId: parent.id,
+      },
+    });
   }
 }

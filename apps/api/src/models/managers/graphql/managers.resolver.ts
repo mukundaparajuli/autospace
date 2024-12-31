@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { ManagersService } from './managers.service';
 import { Manager } from './entity/manager.entity';
 import { FindUniqueManagerArgs } from './dtos/find.args';
@@ -17,7 +24,7 @@ export class ManagersResolver {
   constructor(
     private readonly managersService: ManagersService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Manager)
@@ -67,22 +74,22 @@ export class ManagersResolver {
   async bookingTimelines(@Parent() manager: Manager) {
     return this.prisma.bookingTimeline.findMany({
       where: { managerId: manager.id },
-    })
+    });
   }
 
   @ResolveField(() => Company)
   async company(@Parent() manager: Manager) {
     return this.prisma.company.findUnique({
       where: { id: manager.companyId },
-    })
+    });
   }
 
   @ResolveField(() => User)
   async user(@Parent() parent: Manager) {
     return this.prisma.user.findUnique({
       where: {
-        id: parent.id
-      }
-    })
+        id: parent.id,
+      },
+    });
   }
 }
