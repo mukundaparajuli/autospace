@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { VerificationsService } from './verifications.service';
 import { Verification } from './entity/verification.entity';
 import { FindUniqueVerificationArgs } from './dtos/find.args';
@@ -15,7 +22,7 @@ export class VerificationsResolver {
   constructor(
     private readonly verificationsService: VerificationsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Verification)

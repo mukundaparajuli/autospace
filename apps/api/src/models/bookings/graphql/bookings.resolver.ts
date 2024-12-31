@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { BookingsService } from './bookings.service';
 import { Booking } from './entity/booking.entity';
 import { FindUniqueBookingArgs } from './dtos/find.args';
@@ -18,7 +25,7 @@ export class BookingsResolver {
   constructor(
     private readonly bookingsService: BookingsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Booking)
@@ -64,33 +71,31 @@ export class BookingsResolver {
     return this.bookingsService.remove(args);
   }
 
-
   @ResolveField(() => Slot)
   async slot(@Parent() parent: Booking) {
-    return this.prisma.booking.findUnique({ where: { id: parent.slotId } })
+    return this.prisma.booking.findUnique({ where: { id: parent.slotId } });
   }
 
   @ResolveField(() => Customer)
   async customer(@Parent() parent: Booking) {
-    return this.prisma.booking.findUnique({ where: { id: parent.customerId } })
+    return this.prisma.booking.findUnique({ where: { id: parent.customerId } });
   }
 
   @ResolveField(() => [BookingTimeline])
   async bookingTimelines(@Parent() parent: Booking) {
     return this.prisma.bookingTimeline.findMany({
       where: {
-        bookingId: parent.id
-      }
-    })
+        bookingId: parent.id,
+      },
+    });
   }
 
   @ResolveField(() => [ValetAssignment])
   async valetAssignments(@Parent() parent: Booking) {
     return this.prisma.valetAssignment.findMany({
       where: {
-        bookingId: parent.id
-      }
-    })
+        bookingId: parent.id,
+      },
+    });
   }
-
 }

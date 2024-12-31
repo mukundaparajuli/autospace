@@ -1,4 +1,11 @@
-import { Resolver, Query, Mutation, Args, ResolveField, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveField,
+  Parent,
+} from '@nestjs/graphql';
 import { BookingTimelinesService } from './booking-timelines.service';
 import { BookingTimeline } from './entity/booking-timeline.entity';
 import { FindUniqueBookingTimelineArgs } from './dtos/find.args';
@@ -17,7 +24,7 @@ export class BookingTimelinesResolver {
   constructor(
     private readonly bookingTimelinesService: BookingTimelinesService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => BookingTimeline)

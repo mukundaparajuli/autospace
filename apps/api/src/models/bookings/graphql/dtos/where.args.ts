@@ -1,20 +1,21 @@
-import { Field, InputType, PartialType } from '@nestjs/graphql';
-import { BookingStatus, Prisma } from '@prisma/client';
+
+import { Field, InputType, PartialType } from '@nestjs/graphql'
+import { $Enums, BookingStatus, Prisma } from '@prisma/client'
 import {
   DateTimeFilter,
   FloatFilter,
   IntFilter,
   RestrictProperties,
   StringFilter,
-} from 'src/common/dtos/common.input';
-import { BookingTimelineListRelationFilter } from 'src/models/booking-timelines/graphql/dtos/where.args';
-import { CustomerRelationFilter } from 'src/models/customers/graphql/dtos/where.args';
-import { SlotRelationFilter } from 'src/models/slots/graphql/dtos/where.args';
-import { ValetAssignmentListRelationFilter } from 'src/models/valet-assignments/graphql/dtos/where.args';
+} from 'src/common/dtos/common.input'
+import { BookingTimelineListRelationFilter } from 'src/models/booking-timelines/graphql/dtos/where.args'
+import { CustomerRelationFilter } from 'src/models/customers/graphql/dtos/where.args'
+import { SlotRelationFilter } from 'src/models/slots/graphql/dtos/where.args'
+import { ValetAssignmentRelationFilter } from 'src/models/valet-assignments/graphql/dtos/where.args'
 
 @InputType()
 export class BookingWhereUniqueInput {
-  id: string;
+  id: string
 }
 
 @InputType()
@@ -22,56 +23,54 @@ export class EnumBookingStatusFilter {
   @Field(() => BookingStatus, { nullable: true })
   equals: BookingStatus;
   @Field(() => [BookingStatus], { nullable: true })
-  in: BookingStatus[];
+  in: BookingStatus[]
   @Field(() => [BookingStatus], { nullable: true })
-  notIn: BookingStatus[];
+  notIn: BookingStatus[]
   @Field(() => BookingStatus, { nullable: true })
-  not: BookingStatus;
+  not: BookingStatus
 }
 
 @InputType()
 export class BookingWhereInputStrict
   implements
-    RestrictProperties<BookingWhereInputStrict, Prisma.BookingWhereInput>
-{
-  id: StringFilter;
-  createdAt: DateTimeFilter;
-  updatedAt: DateTimeFilter;
-  pricePerHour: FloatFilter;
-  totalPrice: FloatFilter;
-  startTime: DateTimeFilter;
-  endTime: DateTimeFilter;
-  vehicleNumber: StringFilter;
-  phoneNumber: StringFilter;
-  passcode: StringFilter;
+  RestrictProperties<BookingWhereInputStrict, Prisma.BookingWhereInput> {
+  bookingTimelineId: number | Prisma.IntFilter<'Booking'>
+  id: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  pricePerHour: FloatFilter
+  totalPrice: FloatFilter
+  startTime: DateTimeFilter
+  endTime: DateTimeFilter
+  vehicleNumber: StringFilter
+  phoneNumber: StringFilter
+  passcode: StringFilter
 
-  status: EnumBookingStatusFilter;
-  slotId: StringFilter;
-  customerId: StringFilter;
-  bookingTimelineId: IntFilter;
-  Slot: SlotRelationFilter;
-  Customer: CustomerRelationFilter;
-  BookingTimeline: BookingTimelineListRelationFilter;
-  ValetAssignment: ValetAssignmentListRelationFilter;
-  // Todo: Add the below field decorator only to the $Enums types.
+  status: EnumBookingStatusFilter
+  slotId: StringFilter
+  customerId: StringFilter
+  ValetAssignment: ValetAssignmentRelationFilter
+  Customer: CustomerRelationFilter
+  Slot: SlotRelationFilter
+  BookingTimeline: BookingTimelineListRelationFilter
 
-  AND: BookingWhereInput[];
-  OR: BookingWhereInput[];
-  NOT: BookingWhereInput[];
+  AND: BookingWhereInput[]
+  OR: BookingWhereInput[]
+  NOT: BookingWhereInput[]
 }
 
 @InputType()
-export class BookingWhereInput extends PartialType(BookingWhereInputStrict) {}
+export class BookingWhereInput extends PartialType(BookingWhereInputStrict) { }
 
 @InputType()
 export class BookingListRelationFilter {
-  every?: BookingWhereInput;
-  some?: BookingWhereInput;
-  none?: BookingWhereInput;
+  every?: BookingWhereInput
+  some?: BookingWhereInput
+  none?: BookingWhereInput
 }
 
 @InputType()
 export class BookingRelationFilter {
-  is?: BookingWhereInput;
-  isNot?: BookingWhereInput;
+  is?: BookingWhereInput
+  isNot?: BookingWhereInput
 }

@@ -19,11 +19,10 @@ registerEnumType(Prisma.BookingTimelineScalarFieldEnum, {
 @ArgsType()
 class FindManyBookingTimelineArgsStrict
   implements
-    RestrictProperties<
-      FindManyBookingTimelineArgsStrict,
-      Omit<Prisma.BookingTimelineFindManyArgs, 'include' | 'select'>
-    >
-{
+  RestrictProperties<
+    FindManyBookingTimelineArgsStrict,
+    Omit<Prisma.BookingTimelineFindManyArgs, 'include' | 'select'>
+  > {
   where: BookingTimelineWhereInput;
   orderBy: BookingTimelineOrderByWithRelationInput[];
   cursor: BookingTimelineWhereUniqueInput;
@@ -36,7 +35,7 @@ class FindManyBookingTimelineArgsStrict
 @ArgsType()
 export class FindManyBookingTimelineArgs extends PartialType(
   FindManyBookingTimelineArgsStrict,
-) {}
+) { }
 
 @ArgsType()
 export class FindUniqueBookingTimelineArgs {

@@ -171,8 +171,12 @@ input ReviewWhereUniqueInput {
 }
 
 type Mutation {
-  createUserWithCredentailsInput(createUserWithCredentailsInput: RegisterWithCredentialsInput!): User!
-  createUserWithProvidersInput(createUserWithProvidersInput: RegisterWithProvidersInput!): User!
+  createUserWithCredentailsInput(
+    createUserWithCredentailsInput: RegisterWithCredentialsInput!
+  ): User!
+  createUserWithProvidersInput(
+    createUserWithProvidersInput: RegisterWithProvidersInput!
+  ): User!
   loginUser(loginInput: LoginInput!): LoginOutput!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(where: UserWhereUniqueInput!): User!
@@ -194,11 +198,21 @@ type Mutation {
   createGarage(createGarageInput: CreateGarageInput!): Garage!
   updateGarage(updateGarageInput: UpdateGarageInput!): Garage!
   removeGarage(where: GarageWhereUniqueInput!): Garage!
-  createValetAssignment(createValetAssignmentInput: CreateValetAssignmentInput!): ValetAssignment!
-  updateValetAssignment(updateValetAssignmentInput: UpdateValetAssignmentInput!): ValetAssignment!
-  removeValetAssignment(where: ValetAssignmentWhereUniqueInput!): ValetAssignment!
-  createVerification(createVerificationInput: CreateVerificationInput!): Verification!
-  updateVerification(updateVerificationInput: UpdateVerificationInput!): Verification!
+  createValetAssignment(
+    createValetAssignmentInput: CreateValetAssignmentInput!
+  ): ValetAssignment!
+  updateValetAssignment(
+    updateValetAssignmentInput: UpdateValetAssignmentInput!
+  ): ValetAssignment!
+  removeValetAssignment(
+    where: ValetAssignmentWhereUniqueInput!
+  ): ValetAssignment!
+  createVerification(
+    createVerificationInput: CreateVerificationInput!
+  ): Verification!
+  updateVerification(
+    updateVerificationInput: UpdateVerificationInput!
+  ): Verification!
   removeVerification(where: VerificationWhereUniqueInput!): Verification!
   createReview(createReviewInput: CreateReviewInput!): Review!
   updateReview(updateReviewInput: UpdateReviewInput!): Review!

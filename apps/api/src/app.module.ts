@@ -19,6 +19,10 @@ import { ValetAssignmentsModule } from './models/valet-assignments/valet-assignm
 import { VerificationsModule } from './models/verifications/verifications.module';
 import { ReviewsModule } from './models/reviews/reviews.module';
 import { CompaniesModule } from './models/companies/companies.module';
+import { BookingTimelinesModule } from './models/booking-timelines/booking-timelines.module';
+import { BookingsModule } from './models/bookings/bookings.module';
+import { SlotsModule } from './models/slots/slots.module';
+import { ValetsModule } from './models/valets/valets.module';
 
 const MAX_AGE = 24 * 60 * 60;
 @Module({
@@ -49,18 +53,18 @@ const MAX_AGE = 24 * 60 * 60;
     CustomersModule,
     AdminsModule,
     ManagersModule,
-    // ValetsModule,
+    ValetsModule,
     CompaniesModule,
     AddressesModule,
     GaragesModule,
-    // SlotsModule,
-    // BookingsModule,
+    SlotsModule,
+    BookingsModule,
     ValetAssignmentsModule,
-    // BookingTimelinesModule,
+    BookingTimelinesModule,
     VerificationsModule,
     ReviewsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule { }

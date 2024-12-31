@@ -1,0 +1,28 @@
+query ExampleQuery {
+  users {
+    id
+    name
+    createdAt
+    updatedAt
+    admin {
+      id
+      createdAt
+      updatedAt
+    }
+    manager {
+      id
+      createdAt
+      updatedAt
+    }
+    valet {
+      id
+      createdAt
+      updatedAt
+    }
+    customer {
+      id
+      createdAt
+      updatedAt
+    }
+  }
+}

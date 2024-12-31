@@ -30,11 +30,10 @@ export class EnumBookingStatusFilter {
 @InputType()
 export class BookingTimelineWhereInputStrict
   implements
-    RestrictProperties<
-      BookingTimelineWhereInputStrict,
-      Prisma.BookingTimelineWhereInput
-    >
-{
+  RestrictProperties<
+    BookingTimelineWhereInputStrict,
+    Prisma.BookingTimelineWhereInput
+  > {
   id: IntFilter;
   timestamp: DateTimeFilter;
 
@@ -57,7 +56,7 @@ export class BookingTimelineWhereInputStrict
 @InputType()
 export class BookingTimelineWhereInput extends PartialType(
   BookingTimelineWhereInputStrict,
-) {}
+) { }
 
 @InputType()
 export class BookingTimelineListRelationFilter {
