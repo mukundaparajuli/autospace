@@ -24,7 +24,7 @@ export class BookingTimelinesResolver {
   constructor(
     private readonly bookingTimelinesService: BookingTimelinesService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated()
   @Mutation(() => BookingTimeline)
@@ -32,7 +32,6 @@ export class BookingTimelinesResolver {
     @Args('createBookingTimelineInput') args: CreateBookingTimelineInput,
     @GetUser() user: GetUserType,
   ) {
-    checkRowLevelPermission(user, args.id.toString());
     return this.bookingTimelinesService.create(args);
   }
 

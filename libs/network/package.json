@@ -1,5 +1,5 @@
 {
-  "name": "network",
+  "name": "@autospace/network",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -17,9 +17,14 @@
     "@graphql-codegen/typed-document-node": "^5.0.12",
     "add": "^2.0.6",
     "pnpm": "^9.15.2",
+    "react": "19.0.0-rc-66855b96-20241106",
     "ws": "^8.18.0"
   },
   "dependencies": {
+    "@apollo/client": "^3.12.4",
     "@parcel/watcher": "^2.5.0"
+  },
+  "peerDependencies": {
+    "react": "19.0.0-rc-66855b96-20241106"
   }
 }

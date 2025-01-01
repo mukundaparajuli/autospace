@@ -1,22 +1,22 @@
 import { Field, InputType, PartialType } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { RestrictProperties } from 'src/common/dtos/common.input';
+import { UserOrderByWithRelationInput } from 'src/models/users/graphql/dtos/order-by.args';
 
 @InputType()
 export class ValetOrderByWithRelationInputStrict
   implements
-    RestrictProperties<
-      ValetOrderByWithRelationInputStrict,
-      Prisma.ValetOrderByWithRelationInput
-    >
-{
+  RestrictProperties<
+    ValetOrderByWithRelationInputStrict,
+    Prisma.ValetOrderByWithRelationInput
+  > {
   @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
   createdAt: Prisma.SortOrder;
   updatedAt: Prisma.SortOrder;
   displayName: Prisma.SortOrder;
   companyId: Prisma.SortOrder;
-  User: Prisma.UserOrderByWithRelationInput;
+  User: UserOrderByWithRelationInput;
   Company: Prisma.CompanyOrderByWithRelationInput;
   BookingTimeline: Prisma.BookingTimelineOrderByRelationAggregateInput;
   PickupAssignments: Prisma.ValetAssignmentOrderByRelationAggregateInput;
@@ -27,7 +27,7 @@ export class ValetOrderByWithRelationInputStrict
 @InputType()
 export class ValetOrderByWithRelationInput extends PartialType(
   ValetOrderByWithRelationInputStrict,
-) {}
+) { }
 
 @InputType()
 export class ValetOrderByRelationAggregateInput {

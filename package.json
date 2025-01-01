@@ -1,5 +1,5 @@
 {
-  "name": "autospace",
+  "name": "autospace/network",
   "version": "1.0.0",
   "description": "",
   "private": true,
@@ -26,6 +26,8 @@
     "@apollo/server": "^4.11.2",
     "@nestjs/apollo": "^12.2.1",
     "@nestjs/graphql": "^12.2.1",
-    "graphql": "^16.9.0"
+    "graphql": "^16.9.0",
+    "react": "19.0.0-rc-66855b96-20241106",
+    "react-dom": "19.0.0-rc-66855b96-20241106"
   }
 }

@@ -37,6 +37,39 @@ type Customer {
   displayName: String!
   createdAt: DateTime!
   updatedAt: DateTime!
+  user: User!
+  bookings: [Booking!]!
+  reviews: [Booking!]!
+}
+
+type Booking {
+  pricePerHour: Int
+  totalPrice: Int
+  status: BookingStatus!
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  startTime: DateTime!
+  endTime: DateTime!
+  vehicleNumber: String!
+  phoneNumber: String!
+  passcode: String!
+  slotId: String!
+  customerId: String!
+  bookingTimelineId: Int!
+  customer: Customer!
+  bookingTimelines: [BookingTimeline!]!
+  valetAssignments: [ValetAssignment!]!
+}
+
+enum BookingStatus {
+  BOOKED
+  VALET_ASSIGNED_FOR_CHECK_IN
+  VALET_PICKED_UP
+  CHECKED_IN
+  VALET_ASSIGNED_FOR_CHECK_OUT
+  CHECKED_OUT
+  VALET_RETURNED
 }
 
 type Verification {
@@ -46,6 +79,8 @@ type Verification {
   verified: Boolean!
   adminId: String!
   garageId: String!
+  admin: Admin!
+  garage: Admin!
 }
 
 type Manager {
@@ -54,6 +89,33 @@ type Manager {
   updatedAt: DateTime!
   displayName: String!
   companyId: String!
+  bookingTimelines: [BookingTimeline!]!
+  company: Company!
+  user: User!
+}
+
+type BookingTimeline {
+  status: BookingStatus
+  valetId: String
+  managerId: String
+  id: Int!
+  timestamp: DateTime!
+  bookingId: String!
+  bookingTimeline: Booking!
+  valet: Valet!
+  manager: Manager!
+}
+
+type Company {
+  id: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  description: String!
+  displayName: String!
+  managers: [Manager!]!
+  valets: [Manager!]!
+  garages: [Manager!]!
+  slots: [Manager!]!
 }
 
 type Address {
@@ -63,6 +125,7 @@ type Address {
   addressName: String!
   lat: Int!
   long: Int!
+  garages: [Garage!]!
 }
 
 type Garage {
@@ -74,6 +137,22 @@ type Garage {
   description: String!
   garageName: String!
   addressId: String!
+  company: Company!
+  address: Company!
+  verifications: [Verification!]!
+  reviews: [Review!]!
+}
+
+type Review {
+  comment: String
+  id: Int!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  rating: Int!
+  customerId: String!
+  garageId: String!
+  customer: Customer!
+  garage: Customer!
 }
 
 type ValetAssignment {
@@ -87,24 +166,17 @@ type ValetAssignment {
   createdAt: DateTime!
   updatedAt: DateTime!
   bookingId: String!
+  pickupValet: Valet!
+  returnValet: Valet!
+  booking: Booking!
 }
 
-type Review {
-  rating: Int
-  comment: String
-  id: Int!
-  customerId: String!
+type Valet {
+  id: String
   createdAt: DateTime!
   updatedAt: DateTime!
-  garageId: String!
-}
-
-type Company {
-  id: String!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  description: String!
   displayName: String!
+  companyId: String!
 }
 
 type Query {
@@ -122,8 +194,12 @@ type Query {
   address(where: AddressWhereUniqueInput!): Address!
   garages: [Garage!]!
   garage(where: GarageWhereUniqueInput!): Garage!
+  bookings: [Booking!]!
+  booking(where: BookingWhereUniqueInput!): Booking!
   valetAssignments: [ValetAssignment!]!
   valetAssignment(where: ValetAssignmentWhereUniqueInput!): ValetAssignment!
+  bookingTimelines: [BookingTimeline!]!
+  bookingTimeline(where: BookingTimelineWhereUniqueInput!): BookingTimeline!
   verifications: [Verification!]!
   verification(where: VerificationWhereUniqueInput!): Verification!
   reviews: [Review!]!
@@ -158,8 +234,16 @@ input GarageWhereUniqueInput {
   id: String!
 }
 
+input BookingWhereUniqueInput {
+  id: String!
+}
+
 input ValetAssignmentWhereUniqueInput {
   id: String!
+}
+
+input BookingTimelineWhereUniqueInput {
+  id: Int!
 }
 
 input VerificationWhereUniqueInput {
@@ -171,12 +255,8 @@ input ReviewWhereUniqueInput {
 }
 
 type Mutation {
-  createUserWithCredentailsInput(
-    createUserWithCredentailsInput: RegisterWithCredentialsInput!
-  ): User!
-  createUserWithProvidersInput(
-    createUserWithProvidersInput: RegisterWithProvidersInput!
-  ): User!
+  createUserWithCredentailsInput(createUserWithCredentailsInput: RegisterWithCredentialsInput!): User!
+  createUserWithProvidersInput(createUserWithProvidersInput: RegisterWithProvidersInput!): User!
   loginUser(loginInput: LoginInput!): LoginOutput!
   updateUser(updateUserInput: UpdateUserInput!): User!
   removeUser(where: UserWhereUniqueInput!): User!
@@ -198,21 +278,17 @@ type Mutation {
   createGarage(createGarageInput: CreateGarageInput!): Garage!
   updateGarage(updateGarageInput: UpdateGarageInput!): Garage!
   removeGarage(where: GarageWhereUniqueInput!): Garage!
-  createValetAssignment(
-    createValetAssignmentInput: CreateValetAssignmentInput!
-  ): ValetAssignment!
-  updateValetAssignment(
-    updateValetAssignmentInput: UpdateValetAssignmentInput!
-  ): ValetAssignment!
-  removeValetAssignment(
-    where: ValetAssignmentWhereUniqueInput!
-  ): ValetAssignment!
-  createVerification(
-    createVerificationInput: CreateVerificationInput!
-  ): Verification!
-  updateVerification(
-    updateVerificationInput: UpdateVerificationInput!
-  ): Verification!
+  createBooking(createBookingInput: CreateBookingInput!): Booking!
+  updateBooking(updateBookingInput: UpdateBookingInput!): Booking!
+  removeBooking(where: BookingWhereUniqueInput!): Booking!
+  createValetAssignment(createValetAssignmentInput: CreateValetAssignmentInput!): ValetAssignment!
+  updateValetAssignment(updateValetAssignmentInput: UpdateValetAssignmentInput!): ValetAssignment!
+  removeValetAssignment(where: ValetAssignmentWhereUniqueInput!): ValetAssignment!
+  createBookingTimeline(createBookingTimelineInput: CreateBookingTimelineInput!): BookingTimeline!
+  updateBookingTimeline(updateBookingTimelineInput: UpdateBookingTimelineInput!): BookingTimeline!
+  removeBookingTimeline(where: BookingTimelineWhereUniqueInput!): BookingTimeline!
+  createVerification(createVerificationInput: CreateVerificationInput!): Verification!
+  updateVerification(updateVerificationInput: UpdateVerificationInput!): Verification!
   removeVerification(where: VerificationWhereUniqueInput!): Verification!
   createReview(createReviewInput: CreateReviewInput!): Review!
   updateReview(updateReviewInput: UpdateReviewInput!): Review!
@@ -323,6 +399,34 @@ input UpdateGarageInput {
   addressId: String
 }
 
+input CreateBookingInput {
+  pricePerHour: Int
+  totalPrice: Int
+  id: String!
+  startTime: DateTime!
+  endTime: DateTime!
+  vehicleNumber: String!
+  phoneNumber: String!
+  passcode: String!
+  slotId: String!
+  customerId: String!
+  bookingTimelineId: Int!
+}
+
+input UpdateBookingInput {
+  pricePerHour: Int
+  totalPrice: Int
+  id: String!
+  startTime: DateTime
+  endTime: DateTime
+  vehicleNumber: String
+  phoneNumber: String
+  passcode: String
+  slotId: String
+  customerId: String
+  bookingTimelineId: Int
+}
+
 input CreateValetAssignmentInput {
   id: String!
   bookingId: String!
@@ -331,6 +435,17 @@ input CreateValetAssignmentInput {
 input UpdateValetAssignmentInput {
   id: String!
   bookingId: String
+}
+
+input CreateBookingTimelineInput {
+  status: BookingStatus
+  bookingId: String!
+}
+
+input UpdateBookingTimelineInput {
+  status: BookingStatus
+  bookingId: String
+  id: Int!
 }
 
 input CreateVerificationInput {
@@ -348,17 +463,17 @@ input UpdateVerificationInput {
 }
 
 input CreateReviewInput {
-  rating: Int
   comment: String
   id: Int!
+  rating: Int!
   customerId: String!
   garageId: String!
 }
 
 input UpdateReviewInput {
-  rating: Int
   comment: String
   id: Int!
+  rating: Int
   customerId: String
   garageId: String
 }

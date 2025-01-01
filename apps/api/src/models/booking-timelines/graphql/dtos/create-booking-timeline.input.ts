@@ -4,6 +4,6 @@ import { BookingTimeline } from '../entity/booking-timeline.entity';
 @InputType()
 export class CreateBookingTimelineInput extends PickType(
   BookingTimeline,
-  ['id', 'status', 'bookingId'],
+  ['bookingId', 'status'],
   InputType,
 ) { }

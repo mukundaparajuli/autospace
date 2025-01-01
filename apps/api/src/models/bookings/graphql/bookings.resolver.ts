@@ -25,7 +25,7 @@ export class BookingsResolver {
   constructor(
     private readonly bookingsService: BookingsService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated()
   @Mutation(() => Booking)
@@ -71,10 +71,10 @@ export class BookingsResolver {
     return this.bookingsService.remove(args);
   }
 
-  @ResolveField(() => Slot)
-  async slot(@Parent() parent: Booking) {
-    return this.prisma.booking.findUnique({ where: { id: parent.slotId } });
-  }
+  // @ResolveField(() => Slot)
+  // async slot(@Parent() parent: Booking) {
+  //   return this.prisma.booking.findUnique({ where: { id: parent.slotId } });
+  // }
 
   @ResolveField(() => Customer)
   async customer(@Parent() parent: Booking) {

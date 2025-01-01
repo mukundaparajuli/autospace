@@ -6,4 +6,4 @@ export class CreateGarageInput extends PickType(
   Garage,
   ['id', 'garageName', 'description', 'image', 'companyId', 'addressId'],
   InputType,
-) {}
+) { }

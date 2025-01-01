@@ -1,4 +1,4 @@
-import { $Enums, Slot } from '@prisma/client';
+import { $Enums, Slot, SlotType } from '@prisma/client';
 import { RestrictProperties } from 'src/common/dtos/common.input';
 
 export class SlotEntity implements RestrictProperties<SlotEntity, Slot> {

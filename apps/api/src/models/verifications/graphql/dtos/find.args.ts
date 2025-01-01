@@ -19,11 +19,10 @@ registerEnumType(Prisma.VerificationScalarFieldEnum, {
 @ArgsType()
 class FindManyVerificationArgsStrict
   implements
-    RestrictProperties<
-      FindManyVerificationArgsStrict,
-      Omit<Prisma.VerificationFindManyArgs, 'include' | 'select'>
-    >
-{
+  RestrictProperties<
+    FindManyVerificationArgsStrict,
+    Omit<Prisma.VerificationFindManyArgs, 'include' | 'select'>
+  > {
   where: VerificationWhereInput;
   orderBy: VerificationOrderByWithRelationInput[];
   cursor: VerificationWhereUniqueInput;
@@ -36,7 +35,7 @@ class FindManyVerificationArgsStrict
 @ArgsType()
 export class FindManyVerificationArgs extends PartialType(
   FindManyVerificationArgsStrict,
-) {}
+) { }
 
 @ArgsType()
 export class FindUniqueVerificationArgs {

@@ -24,7 +24,7 @@ export class SlotsResolver {
   constructor(
     private readonly slotsService: SlotsService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated()
   @Mutation(() => Slot)
@@ -32,13 +32,12 @@ export class SlotsResolver {
     @Args('createSlotInput') args: CreateSlotInput,
     @GetUser() user: GetUserType,
   ) {
-    checkRowLevelPermission(user, args.id);
     return this.slotsService.create(args);
   }
 
   @Query(() => [Slot], { name: 'slots' })
-  findAll(@Args() args: FindManySlotArgs) {
-    return this.slotsService.findAll(args);
+  findAll() {
+    return this.slotsService.findAll();
   }
 
   @Query(() => Slot, { name: 'slot' })

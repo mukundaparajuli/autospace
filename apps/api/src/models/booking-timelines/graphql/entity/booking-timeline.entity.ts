@@ -7,6 +7,7 @@ export class BookingTimeline
   implements RestrictProperties<BookingTimeline, BookingTimelineType> {
   id: number;
 
+  @Field(() => $Enums.BookingStatus, { nullable: true })
   status: $Enums.BookingStatus;
 
   timestamp: Date;
@@ -15,5 +16,7 @@ export class BookingTimeline
   valetId: string;
   @Field({ nullable: true })
   managerId: string;
+
+
   // Todo Add below to make optional fields optional.
 }

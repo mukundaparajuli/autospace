@@ -25,7 +25,7 @@ export class GaragesResolver {
   constructor(
     private readonly garagesService: GaragesService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated()
   @Mutation(() => Garage)
@@ -89,14 +89,14 @@ export class GaragesResolver {
     });
   }
 
-  @ResolveField(() => [Slot])
-  async slots(@Parent() parent: Garage) {
-    return await this.prisma.slot.findMany({
-      where: {
-        garageId: parent.id,
-      },
-    });
-  }
+  // @ResolveField(() => [Slot])
+  // async slots(@Parent() parent: Garage) {
+  //   return await this.prisma.slot.findMany({
+  //     where: {
+  //       garageId: parent.id,
+  //     },
+  //   });
+  // }
 
   @ResolveField(() => [Verification])
   async verifications(@Parent() parent: Garage) {

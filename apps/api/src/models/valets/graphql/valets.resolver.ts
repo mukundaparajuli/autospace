@@ -25,7 +25,7 @@ export class ValetsResolver {
   constructor(
     private readonly valetsService: ValetsService,
     private readonly prisma: PrismaService,
-  ) {}
+  ) { }
 
   @AllowAuthenticated()
   @Mutation(() => Valet)

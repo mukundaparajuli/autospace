@@ -6,4 +6,4 @@ export class CreateCustomerInput extends PickType(
   Customer,
   ['id', 'displayName'],
   InputType,
-) {}
+) { }

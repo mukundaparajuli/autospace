@@ -16,11 +16,10 @@ registerEnumType(Prisma.AddressScalarFieldEnum, {
 @ArgsType()
 class FindManyAddressArgsStrict
   implements
-    RestrictProperties<
-      FindManyAddressArgsStrict,
-      Omit<Prisma.AddressFindManyArgs, 'include' | 'select'>
-    >
-{
+  RestrictProperties<
+    FindManyAddressArgsStrict,
+    Omit<Prisma.AddressFindManyArgs, 'include' | 'select'>
+  > {
   where: AddressWhereInput;
   orderBy: AddressOrderByWithRelationInput[];
   cursor: AddressWhereUniqueInput;
@@ -33,7 +32,7 @@ class FindManyAddressArgsStrict
 @ArgsType()
 export class FindManyAddressArgs extends PartialType(
   FindManyAddressArgsStrict,
-) {}
+) { }
 
 @ArgsType()
 export class FindUniqueAddressArgs {

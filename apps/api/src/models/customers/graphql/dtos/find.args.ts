@@ -16,11 +16,10 @@ registerEnumType(Prisma.CustomerScalarFieldEnum, {
 @ArgsType()
 class FindManyCustomerArgsStrict
   implements
-    RestrictProperties<
-      FindManyCustomerArgsStrict,
-      Omit<Prisma.CustomerFindManyArgs, 'include' | 'select'>
-    >
-{
+  RestrictProperties<
+    FindManyCustomerArgsStrict,
+    Omit<Prisma.CustomerFindManyArgs, 'include' | 'select'>
+  > {
   where: CustomerWhereInput;
   orderBy: CustomerOrderByWithRelationInput[];
   cursor: CustomerWhereUniqueInput;
@@ -33,7 +32,7 @@ class FindManyCustomerArgsStrict
 @ArgsType()
 export class FindManyCustomerArgs extends PartialType(
   FindManyCustomerArgsStrict,
-) {}
+) { }
 
 @ArgsType()
 export class FindUniqueCustomerArgs {

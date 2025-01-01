@@ -1,28 +1,13 @@
-query ExampleQuery {
-  users {
+mutation Mutation(
+  $createUserWithCredentailsInput: RegisterWithCredentialsInput!
+) {
+  createUserWithCredentailsInput(
+    createUserWithCredentailsInput: $createUserWithCredentailsInput
+  ) {
     id
     name
+    image
     createdAt
     updatedAt
-    admin {
-      id
-      createdAt
-      updatedAt
-    }
-    manager {
-      id
-      createdAt
-      updatedAt
-    }
-    valet {
-      id
-      createdAt
-      updatedAt
-    }
-    customer {
-      id
-      createdAt
-      updatedAt
-    }
   }
 }
