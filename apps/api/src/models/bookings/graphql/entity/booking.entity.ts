@@ -4,7 +4,7 @@ import { RestrictProperties } from 'src/common/dtos/common.input';
 
 registerEnumType($Enums.BookingStatus, {
   name: 'BookingStatus',
-})
+});
 
 @ObjectType()
 export class Booking implements RestrictProperties<Booking, BookingType> {
@@ -18,7 +18,7 @@ export class Booking implements RestrictProperties<Booking, BookingType> {
   startTime: Date;
   endTime: Date;
 
-  @Field(() => $Enums.BookingStatus)
+  @Field(() => $Enums.BookingStatus, { nullable: true })
   status: BookingStatus;
 
   vehicleNumber: string;

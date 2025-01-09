@@ -6,9 +6,7 @@ import {
   RestrictProperties,
   StringFilter,
 } from 'src/common/dtos/common.input';
-import {
-  CustomerRelationFilter,
-} from 'src/models/customers/graphql/dtos/where.args';
+import { CustomerRelationFilter } from 'src/models/customers/graphql/dtos/where.args';
 import { GarageWhereInput } from 'src/models/garages/graphql/dtos/where.args';
 
 @InputType()
@@ -19,7 +17,8 @@ export class ReviewWhereUniqueInput {
 @InputType()
 export class ReviewWhereInputStrict
   implements
-  RestrictProperties<ReviewWhereInputStrict, Prisma.ReviewWhereInput> {
+    RestrictProperties<ReviewWhereInputStrict, Prisma.ReviewWhereInput>
+{
   id: IntFilter;
   createdAt: DateTimeFilter;
   updatedAt: DateTimeFilter;
@@ -38,7 +37,7 @@ export class ReviewWhereInputStrict
 }
 
 @InputType()
-export class ReviewWhereInput extends PartialType(ReviewWhereInputStrict) { }
+export class ReviewWhereInput extends PartialType(ReviewWhereInputStrict) {}
 
 @InputType()
 export class ReviewListRelationFilter {

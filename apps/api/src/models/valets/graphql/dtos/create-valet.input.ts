@@ -6,4 +6,4 @@ export class CreateValetInput extends PickType(
   Valet,
   ['id', 'displayName', 'companyId'],
   InputType,
-) {}
+) { }

@@ -2,7 +2,8 @@ import { Booking, BookingStatus } from '@prisma/client';
 import { RestrictProperties } from 'src/common/dtos/common.input';
 
 export class BookingEntity
-  implements RestrictProperties<BookingEntity, Booking> {
+  implements RestrictProperties<BookingEntity, Booking>
+{
   id: string;
   createdAt: Date;
   updatedAt: Date;

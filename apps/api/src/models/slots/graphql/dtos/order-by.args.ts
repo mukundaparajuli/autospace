@@ -8,36 +8,47 @@ import { GarageOrderByWithRelationInput } from 'src/models/garages/graphql/dtos/
 @InputType()
 export class SlotOrderByWithRelationInputStrict
   implements
-  RestrictProperties<
-    SlotOrderByWithRelationInputStrict,
-    Prisma.SlotOrderByWithRelationInput
-  > {
+    RestrictProperties<
+      SlotOrderByWithRelationInputStrict,
+      Prisma.SlotOrderByWithRelationInput
+    >
+{
+  length: Prisma.SortOrder;
   @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
+  @Field(() => Prisma.SortOrder)
   createdAt: Prisma.SortOrder;
+
+  @Field(() => Prisma.SortOrder)
   updatedAt: Prisma.SortOrder;
+
+  @Field(() => Prisma.SortOrder)
   displayName: Prisma.SortOrder;
+
+  @Field(() => Prisma.SortOrder)
   pricePerHour: Prisma.SortOrder;
-  length: Prisma.SortOrder;
+
+  @Field(() => Prisma.SortOrder)
+  garageId: Prisma.SortOrder;
+
+  @Field(() => Prisma.SortOrder)
   breadth: Prisma.SortOrder;
+
+  @Field(() => Prisma.SortOrder)
   height: Prisma.SortOrder;
 
   @Field(() => Prisma.SortOrder)
   slotType: Prisma.SortOrder;
 
-  garageId: Prisma.SortOrder;
-  companyId: Prisma.SortOrder;
-
-  Garage: GarageOrderByWithRelationInput
-  Bookings: BookingOrderByRelationAggregateInput
-  Company: CompanyOrderByWithRelationInput;
+  Garage: GarageOrderByWithRelationInput;
+  Bookings: BookingOrderByRelationAggregateInput;
   // Todo: Add below field decorator to the SortOrder properties.
 }
 
 @InputType()
 export class SlotOrderByWithRelationInput extends PartialType(
   SlotOrderByWithRelationInputStrict,
-) { }
+) {}
 
 @InputType()
 export class SlotOrderByRelationAggregateInput {

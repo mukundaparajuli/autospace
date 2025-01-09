@@ -2,6 +2,8 @@ import { InputType, PartialType } from '@nestjs/graphql';
 import { Prisma } from '@prisma/client';
 import { RestrictProperties } from 'src/common/dtos/common.input';
 import { CustomerRelationFilter } from 'src/models/customers/graphql/dtos/where.args';
+import { ManagerRelationFilter } from 'src/models/managers/graphql/dtos/where.args';
+import { ValetRelationFilter } from 'src/models/valets/graphql/dtos/where.args';
 
 @InputType()
 export class UserWhereUniqueInput {
@@ -20,28 +22,8 @@ export class UserWhereInputStrict
     >
 {
   Customer: CustomerRelationFilter;
-  Valet:
-    | (Prisma.Without<
-        Prisma.ValetNullableScalarRelationFilter,
-        Prisma.ValetWhereInput
-      > &
-        Prisma.ValetWhereInput)
-    | (Prisma.Without<
-        Prisma.ValetWhereInput,
-        Prisma.ValetNullableScalarRelationFilter
-      > &
-        Prisma.ValetNullableScalarRelationFilter);
-  Manager:
-    | (Prisma.Without<
-        Prisma.ManagerNullableScalarRelationFilter,
-        Prisma.ManagerWhereInput
-      > &
-        Prisma.ManagerWhereInput)
-    | (Prisma.Without<
-        Prisma.ManagerWhereInput,
-        Prisma.ManagerNullableScalarRelationFilter
-      > &
-        Prisma.ManagerNullableScalarRelationFilter);
+  Valet: ValetRelationFilter;
+  Manager: ManagerRelationFilter;
   id: string;
   name: string;
   createdAt: Date;

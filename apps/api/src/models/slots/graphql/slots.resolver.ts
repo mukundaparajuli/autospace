@@ -24,7 +24,7 @@ export class SlotsResolver {
   constructor(
     private readonly slotsService: SlotsService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => Slot)
@@ -71,13 +71,6 @@ export class SlotsResolver {
   async garage(@Parent() slot: Slot) {
     return this.prisma.garage.findUnique({
       where: { id: slot.garageId },
-    });
-  }
-
-  @ResolveField(() => Company)
-  async company(@Parent() slot: Slot) {
-    return this.prisma.company.findUnique({
-      where: { id: slot.companyId },
     });
   }
 

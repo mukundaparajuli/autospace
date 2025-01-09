@@ -8,7 +8,6 @@ export class CreateSlotInput extends PickType(
     'id',
     'breadth',
     'length',
-    'companyId',
     'height',
     'displayName',
     'garageId',
@@ -16,4 +15,4 @@ export class CreateSlotInput extends PickType(
     'slotType',
   ],
   InputType,
-) { }
+) {}

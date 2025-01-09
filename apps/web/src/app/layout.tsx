@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import localFont from 'next/font/local'
 import './globals.css'
-import { ApolloProvider } from "@autospace/network/src/config/apollo";
+import { ApolloProvider } from '@autospace/network/src/config/apollo'
 
 const geistSans = localFont({
   src: './fonts/GeistVF.woff',
@@ -33,6 +33,6 @@ export default function RootLayout({
           {children}
         </body>
       </ApolloProvider>
-    </html >
+    </html>
   )
 }

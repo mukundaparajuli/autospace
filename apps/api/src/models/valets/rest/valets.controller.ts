@@ -7,6 +7,7 @@ import {
   Param,
   Delete,
   Query,
+  Logger,
 } from '@nestjs/common';
 
 import { PrismaService } from 'src/common/prisma/prisma.service';
@@ -27,7 +28,8 @@ import { checkRowLevelPermission } from 'src/common/auth/util';
 @ApiTags('valets')
 @Controller('valets')
 export class ValetsController {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService) { }
+  private logger = new Logger();
 
   @AllowAuthenticated()
   @ApiBearerAuth()
@@ -35,6 +37,7 @@ export class ValetsController {
   @Post()
   create(@Body() createValetDto: CreateValet, @GetUser() user: GetUserType) {
     checkRowLevelPermission(user, createValetDto.id);
+    this.logger.log("here")
     return this.prisma.valet.create({ data: createValetDto });
   }
 

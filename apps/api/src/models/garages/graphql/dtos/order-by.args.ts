@@ -10,10 +10,11 @@ import { VerificationOrderByWithRelationInput } from 'src/models/verifications/g
 @InputType()
 export class GarageOrderByWithRelationInputStrict
   implements
-  RestrictProperties<
-    GarageOrderByWithRelationInputStrict,
-    Prisma.GarageOrderByWithRelationInput
-  > {
+    RestrictProperties<
+      GarageOrderByWithRelationInputStrict,
+      Prisma.GarageOrderByWithRelationInput
+    >
+{
   @Field(() => Prisma.SortOrder)
   id: Prisma.SortOrder;
   createdAt: Prisma.SortOrder;
@@ -23,18 +24,18 @@ export class GarageOrderByWithRelationInputStrict
   image: Prisma.SortOrder;
   companyId: Prisma.SortOrder;
   addressId: Prisma.SortOrder;
-  Company: CompanyOrderByWithRelationInput
-  Address: AddressOrderByWithRelationInput
-  Verification: VerificationOrderByWithRelationInput
-  Reviews: ReviewOrderByRelationAggregateInput
-  Slots: SlotOrderByRelationAggregateInput
+  Company: CompanyOrderByWithRelationInput;
+  Address: AddressOrderByWithRelationInput;
+  Verification: VerificationOrderByWithRelationInput;
+  Reviews: ReviewOrderByRelationAggregateInput;
+  Slots: SlotOrderByRelationAggregateInput;
   // Todo: Add below field decorator to the SortOrder properties.
 }
 
 @InputType()
 export class GarageOrderByWithRelationInput extends PartialType(
   GarageOrderByWithRelationInputStrict,
-) { }
+) {}
 
 @InputType()
 export class GarageOrderByRelationAggregateInput {

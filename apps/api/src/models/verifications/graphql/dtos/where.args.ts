@@ -6,6 +6,8 @@ import {
   RestrictProperties,
   StringFilter,
 } from 'src/common/dtos/common.input';
+import { AdminRelationFilter } from 'src/models/admins/graphql/dtos/where.args';
+import { GarageRelationFilter } from 'src/models/garages/graphql/dtos/where.args';
 
 @InputType()
 export class VerificationWhereUniqueInput {
@@ -25,28 +27,8 @@ export class VerificationWhereInputStrict
   verified: BoolFilter;
   adminId: StringFilter;
   garageId: StringFilter;
-  Admin:
-    | (Prisma.Without<
-      Prisma.AdminScalarRelationFilter,
-      Prisma.AdminWhereInput
-    > &
-      Prisma.AdminWhereInput)
-    | (Prisma.Without<
-      Prisma.AdminWhereInput,
-      Prisma.AdminScalarRelationFilter
-    > &
-      Prisma.AdminScalarRelationFilter);
-  Garage:
-    | (Prisma.Without<
-      Prisma.GarageScalarRelationFilter,
-      Prisma.GarageWhereInput
-    > &
-      Prisma.GarageWhereInput)
-    | (Prisma.Without<
-      Prisma.GarageWhereInput,
-      Prisma.GarageScalarRelationFilter
-    > &
-      Prisma.GarageScalarRelationFilter);
+  Admin: AdminRelationFilter
+  Garage: GarageRelationFilter
   // Todo: Add the below field decorator only to the $Enums types.
   // @Field(() => $Enums.x)
 

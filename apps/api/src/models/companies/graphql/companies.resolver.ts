@@ -89,10 +89,10 @@ export class CompaniesResolver {
     });
   }
 
-  @ResolveField(() => [Manager])
-  async slots(@Parent() company: Company) {
-    return this.prisma.slot.findMany({
-      where: { companyId: company.id },
-    });
-  }
+  // @ResolveField(() => [Manager])
+  // async slots(@Parent() company: Company) {
+  //   return this.prisma.slot.findMany({
+  //     where: { companyId: company.id },
+  //   });
+  // }
 }

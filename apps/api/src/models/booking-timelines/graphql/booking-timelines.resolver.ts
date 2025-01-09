@@ -24,7 +24,7 @@ export class BookingTimelinesResolver {
   constructor(
     private readonly bookingTimelinesService: BookingTimelinesService,
     private readonly prisma: PrismaService,
-  ) { }
+  ) {}
 
   @AllowAuthenticated()
   @Mutation(() => BookingTimeline)

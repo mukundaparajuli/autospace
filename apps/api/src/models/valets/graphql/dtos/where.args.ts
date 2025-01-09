@@ -5,6 +5,10 @@ import {
   RestrictProperties,
   StringFilter,
 } from 'src/common/dtos/common.input';
+import { BookingTimelineListRelationFilter } from 'src/models/booking-timelines/graphql/dtos/where.args';
+import { CompanyRelationFilter } from 'src/models/companies/graphql/dtos/where.args';
+import { UserRelationFilter } from 'src/models/users/graphql/dtos/where.args';
+import { ValetAssignmentListRelationFilter } from 'src/models/valet-assignments/graphql/dtos/where.args';
 
 @InputType()
 export class ValetWhereUniqueInput {
@@ -13,42 +17,25 @@ export class ValetWhereUniqueInput {
 
 @InputType()
 export class ValetWhereInputStrict
-  implements RestrictProperties<ValetWhereInputStrict, Prisma.ValetWhereInput>
-{
-  id: StringFilter;
-  createdAt: DateTimeFilter;
-  updatedAt: DateTimeFilter;
-  displayName: StringFilter;
-  companyId: StringFilter;
-  User:
-    | (Prisma.Without<Prisma.UserScalarRelationFilter, Prisma.UserWhereInput> &
-        Prisma.UserWhereInput)
-    | (Prisma.Without<Prisma.UserWhereInput, Prisma.UserScalarRelationFilter> &
-        Prisma.UserScalarRelationFilter);
-  Company:
-    | (Prisma.Without<
-        Prisma.CompanyScalarRelationFilter,
-        Prisma.CompanyWhereInput
-      > &
-        Prisma.CompanyWhereInput)
-    | (Prisma.Without<
-        Prisma.CompanyWhereInput,
-        Prisma.CompanyScalarRelationFilter
-      > &
-        Prisma.CompanyScalarRelationFilter);
-  BookingTimeline: Prisma.BookingTimelineListRelationFilter;
-  PickupAssignments: Prisma.ValetAssignmentListRelationFilter;
-  ReturnAssignments: Prisma.ValetAssignmentListRelationFilter;
-  // Todo: Add the below field decorator only to the $Enums types.
-  // @Field(() => $Enums.x)
+  implements RestrictProperties<ValetWhereInputStrict, Prisma.ValetWhereInput> {
+  User: UserRelationFilter
+  id: StringFilter
+  createdAt: DateTimeFilter
+  updatedAt: DateTimeFilter
+  displayName: StringFilter
+  companyId: StringFilter
+  Company: CompanyRelationFilter
+  BookingTimeline: BookingTimelineListRelationFilter
+  PickupAssignments: ValetAssignmentListRelationFilter
+  ReturnAssignments: ValetAssignmentListRelationFilter
 
-  AND: ValetWhereInput[];
-  OR: ValetWhereInput[];
-  NOT: ValetWhereInput[];
+  AND: ValetWhereInput[]
+  OR: ValetWhereInput[]
+  NOT: ValetWhereInput[]
 }
 
 @InputType()
-export class ValetWhereInput extends PartialType(ValetWhereInputStrict) {}
+export class ValetWhereInput extends PartialType(ValetWhereInputStrict) { }
 
 @InputType()
 export class ValetListRelationFilter {

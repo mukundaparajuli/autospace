@@ -16,10 +16,11 @@ registerEnumType(Prisma.UserScalarFieldEnum, {
 @ArgsType()
 class FindManyUserArgsStrict
   implements
-  RestrictProperties<
-    FindManyUserArgsStrict,
-    Omit<Prisma.UserFindManyArgs, 'include' | 'select'>
-  > {
+    RestrictProperties<
+      FindManyUserArgsStrict,
+      Omit<Prisma.UserFindManyArgs, 'include' | 'select'>
+    >
+{
   where: UserWhereInput;
   orderBy: UserOrderByWithRelationInput[];
   cursor: UserWhereUniqueInput;
@@ -30,7 +31,7 @@ class FindManyUserArgsStrict
 }
 
 @ArgsType()
-export class FindManyUserArgs extends PartialType(FindManyUserArgsStrict) { }
+export class FindManyUserArgs extends PartialType(FindManyUserArgsStrict) {}
 
 @ArgsType()
 export class FindUniqueUserArgs {

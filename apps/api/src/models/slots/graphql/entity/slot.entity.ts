@@ -9,13 +9,12 @@ export class Slot implements RestrictProperties<Slot, SlotType> {
   createdAt: Date;
   updatedAt: Date;
   displayName: string;
-  companyId: string;
   pricePerHour: number;
   length: number;
   breadth: number;
   height: number;
 
-  @Field(() => $Enums.SlotType)
+  @Field(() => String)
   slotType: $Enums.SlotType;
 
   // Todo Add below to make optional fields optional.
